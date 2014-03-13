@@ -1,6 +1,6 @@
 {
   "name": "iorest",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "REST API documentation generator",
   "main": "generate.js",
   "scripts": {
