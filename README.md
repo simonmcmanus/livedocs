@@ -4,6 +4,8 @@ This is a Work in Progress.
 
 Use with caution.
 
+Given a json spec, generates a html file which can be used to test calls to an api.
+
 ##Install
 
 ```

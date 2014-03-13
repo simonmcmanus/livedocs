@@ -1,5 +1,5 @@
 {
-  "name": "IORest",
+  "name": "iorest",
   "version": "0.0.0",
   "description": "REST API documentation generator",
   "main": "generate.js",
