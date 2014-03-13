@@ -1,0 +1,10 @@
+tr
+td.name=param.name
+td
+  select(name=param.name, id=param.name)
+    each option in param.options
+      option(label=option)=option
+td
+    label=param.description
+td=param.location
+td=param.type

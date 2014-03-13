@@ -1,0 +1,7 @@
+tr.noHover
+  td.name=param.label
+  td(colspan=4)
+      - var value = param.value || 'true'
+      input(type="checkbox", name=param.name, id=param.name, value=value)
+      label(for=param.name)=param.description
+      br

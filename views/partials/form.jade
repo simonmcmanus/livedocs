@@ -1,0 +1,45 @@
+form(data-action-template=server + method.URI, method=method.HTTPMethod, target='base').hidden
+  table
+    if method.parameters.length > 0
+      tr.noHover
+        th.name="name"
+        th="value"
+        th.description="description"
+        th="location"
+        th="type"
+
+    each param in method.parameters
+      if param.input != "textarea" && param.input!="checkbox"
+        if param.input=="select"
+          include ./select
+        else
+          include ./input
+
+    each param in method.parameters
+      if param.input==="textarea"
+        include ./textarea
+
+    each param in method.parameters
+      if param.input==="checkbox"
+        include ./checkbox
+    tr.noHover
+      td
+      td(colspan=3)
+        input(type='submit', value='Try it')
+        input.clear(type='button', value='clear results', disabled='true')
+
+  div.results
+    h4='URL'
+    pre.uri
+    h4='Headers'
+    pre.headers
+    h4='Status'
+    pre.status
+    div.output.pretty
+      ul.json
+        li
+          a.pretty(href='#')='Body'
+        li
+          a.raw(href='#')='Raw'
+      pre.pretty
+      pre.raw

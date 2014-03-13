@@ -1,0 +1,38 @@
+html
+  head
+    script!=js
+    title AdBank v0 API
+    style=css
+  body.step1
+
+  noscript Javascript is required.
+    br
+    br
+    small Please turn on Javascript in order to submit theses requests to the api. Javascript is used to add the authorization headers to the requests.
+
+  - var server = 'http://127.0.0.1:8888/v0';
+  div.top
+    img(src='public/images/adbank.png')
+    h1='v0 API'
+  form(action=server + '/auth')#key
+    div.detail='In order to make requests to the API you will need to enter you api key and secret which will have been provided by your account manager.'
+    label='Key:'
+    input#key
+    label='Secret:'
+    input#secret
+    input(type="submit", id="checkAuth" value="Check Auth")
+    input(type="button", id="changeAuth" value="Change Auth")
+    div#auth
+
+  each endpoint in endpoints
+    h2=endpoint.name
+
+    each method in endpoint.methods
+      div(class="#{method.HTTPMethod}").container
+        div.header
+          span.verb=method.HTTPMethod
+          h3=method.URI
+          if method.Synopsis
+            div.synopsis=method.Synopsis
+
+        include ./form

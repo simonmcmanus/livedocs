@@ -1,0 +1,20 @@
+tr
+  td.name=param.name
+  td
+    - var type = 'text'
+
+    - if(param.type && param.type === 'number') {
+        -   type = 'number'
+    - }
+
+    - var required = false;
+    - if(param.required) {
+    -   required = true;
+    - }
+    input(type=type, name=param.name, id=param.name,  data-type=param.location, required=required, value=param.default)
+  td
+      label(for=param.name)=param.description
+  td=param.location
+  td=param.type
+
+
