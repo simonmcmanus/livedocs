@@ -1,7 +1,7 @@
 body {
   margin: 1em ;
   color: #444;
-  font: normal 16px/24px Nudista, nudista, freight-sans-pro, Klavika, Lato, "Gill Sans MT", Calibri, sans-serif;
+  font-family: arial;
 }
 
 body.step1 h2,
@@ -82,7 +82,7 @@ input[type="submit"] {
 }
 input[type="submit"].loading {
   padding-left: 20px;
-  background-image: url('./images/loading.gif');
+  background-image: url(data:image/gif;base64,R0lGODlhCgAKALMAALXF5qW13pSt3oyl1oSl1oSc1nuc1mOMzv///wAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJBwAIACwAAAAACgAKAAAEHhBJdM6UxlB78/2gJBAhIAhhegXF1yJBgABDCgBXBAAh+QQJBwAIACwAAAAACQAJAAAEHBBJZMxEglB7DhZXd41BMUpBcK4XMIwAAsSIKUUAIfkECQcACAAsAAAAAAoACQAABBwQSSTIlKFQgYzBweVdpAQM5XEAQHqUpQZf7RQBACH5BAkHAAgALAAAAAAKAAkAAAQcEEkUypRg0IAEwcAlCFc5WaVhmJLKluF0HO+MRAAh+QQJBwAIACwAAAAACgAKAAAEHRBJBMachQIU8p1B8I3UKBAkIghpaxjfcSBvPE8RACH5BAkHAAgALAAAAAAKAAoAAAQcEElZ5gQWDJsx/2BQhQFoHYclEBKKGAYiCBxsRQAh+QQJBwAIACwAAAAACgAKAAAEHRBJCaa95eo9z9HA4IEVJxmGFWQIiggEEgSXIFgRACH5BAkHAAgALAAAAQAKAAkAAAQeEJ2DagV12s25MR1SfGG5CcQGDJUgIEGBANgWBFsEADs=);
   background-repeat: no-repeat;
   background-position: 6px 7px;
 }
@@ -342,7 +342,6 @@ div.container {
 }
 
 h2{
-  font: 1.2em HelveticaNeue, arial, helvetica, clean, sans-serif;
 }
 div.header {
   border: 1px solid;
