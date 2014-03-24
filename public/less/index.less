@@ -70,9 +70,14 @@ body {
      input#secret {
        width: 300;
      }
+     div.detail {
+       // transition: max-height ease-in-out 500ms;
+       //  -o-transition: max-height ease-in-out 500ms;
+       //  -moz-transition: max-height ease-in-out 500ms;
+       //  -webkit-transition: max-height ease-in-out 500ms;
+        margin-bottom: 20px;
+     }
   }
-
-
   .step1 {
     overflow:hidden;
     form#key {
@@ -205,44 +210,12 @@ body {
       }
     }
 
-    form#key {
-
-      padding: 20px;
-      border: 1px solid #B8B9BD;
-      border-top: 0;
-      font-size: 0.8em;
-      border-radius: 0 0 5px 5px;
-
-       transition: all ease-in-out 500ms;
-       -o-transition: all ease-in-out 500ms;
-       -moz-transition: all ease-in-out 500ms;
-       -webkit-transition: all ease-in-out 500ms;
-
-      label {
-        margin-right: 0.5em;
-        margin-left: 3em;
-      }
-
-      input#key {
-        width: 160;
-      }
-
-      input#secret {
-        width: 300;
-      }
-
-      div.detail {
-        transition: max-height ease-in-out 500ms;
-         -o-transition: max-height ease-in-out 500ms;
-         -moz-transition: max-height ease-in-out 500ms;
-         -webkit-transition: max-height ease-in-out 500ms;
-         margin-bottom: 20px;
-      }
-    }
 
     .results {
       display: none;
-
+      &.show {
+        display: block;
+      }
       .output {
 
         ul.json li{
@@ -285,9 +258,7 @@ body {
           display:none;
         }
       }
-      .show {
-        display: block;
-      }
+
     }
   }
 }
@@ -351,10 +322,9 @@ div.container.GET .header {
 
 div.container div.pretty  a.pretty,
 div.container div.raw a.raw {
-border: 1px solid silver;
-border-bottom: 0;
+  border: 1px solid silver;
+  border-bottom: 0;
 }
-
 
 div.container.GET .header,
 div.container.GET form {
@@ -386,7 +356,6 @@ div.container.PUT .header {
 }
 div.container.PUT .header {
   border-color: #e9cead;
-
 }
 
 div.container.PUT .header .verb {

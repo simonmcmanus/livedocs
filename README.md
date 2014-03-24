@@ -29,6 +29,16 @@ This is an example JSON document taken as input:
 
 And this is the HTML file generated from the html form:
 
+
+### Methods
+```
+{
+
+}
+```
+
+
+### Parameters
 types in params:
 
   * checkboxes
@@ -46,6 +56,7 @@ Here is a description of the parameters you can set:
     name:
     default:
     location: query/body/header
+    hidden: // do not show this parameter.
     type: number/string/json //html5 input type - string if none provied.
     input: input/checkbox/select
     required: true/false

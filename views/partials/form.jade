@@ -1,4 +1,7 @@
-form(data-action-template=server + method.URI, method=method.HTTPMethod, target='base').hidden
+form(data-action-template='/api/v1' + method.URI, method=method.HTTPMethod, target='base').hidden
+  if method.Synopsis
+    div.synopsis=method.Synopsis
+
   table
     if method.parameters.length > 0
       tr.noHover
@@ -7,20 +10,19 @@ form(data-action-template=server + method.URI, method=method.HTTPMethod, target=
         th.description="description"
         th="location"
         th="type"
-
     each param in method.parameters
-      if param.input != "textarea" && param.input!="checkbox"
+      if param.input != "textarea" && param.input!="checkbox" && !param.hidden
         if param.input=="select"
           include ./select
         else
           include ./input
 
     each param in method.parameters
-      if param.input==="textarea"
+      if param.input==="textarea" && !param.hidden
         include ./textarea
 
     each param in method.parameters
-      if param.input==="checkbox"
+      if param.input==="checkbox" && !param.hidden
         include ./checkbox
     tr.noHover
       td
