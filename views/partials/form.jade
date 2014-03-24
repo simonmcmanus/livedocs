@@ -1,4 +1,4 @@
-form(data-action-template='/api/v1' + method.URI, method=method.HTTPMethod, target='base').hidden
+form(data-action-template= prefix + method.URI, method=method.HTTPMethod, target='base').hidden
   if method.Synopsis
     div.synopsis=method.Synopsis
 

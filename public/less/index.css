@@ -60,6 +60,9 @@ body form#key input#key {
 body form#key input#secret {
   width: 300;
 }
+body form#key div.detail {
+  margin-bottom: 20px;
+}
 body .step1 {
   overflow: hidden;
 }
@@ -178,36 +181,11 @@ body .container .header span.verb {
   left: 1px;
   position: relative;
 }
-body .container form#key {
-  padding: 20px;
-  border: 1px solid #B8B9BD;
-  border-top: 0;
-  font-size: 0.8em;
-  border-radius: 0 0 5px 5px;
-  transition: all ease-in-out 500ms;
-  -o-transition: all ease-in-out 500ms;
-  -moz-transition: all ease-in-out 500ms;
-  -webkit-transition: all ease-in-out 500ms;
-}
-body .container form#key label {
-  margin-right: 0.5em;
-  margin-left: 3em;
-}
-body .container form#key input#key {
-  width: 160;
-}
-body .container form#key input#secret {
-  width: 300;
-}
-body .container form#key div.detail {
-  transition: max-height ease-in-out 500ms;
-  -o-transition: max-height ease-in-out 500ms;
-  -moz-transition: max-height ease-in-out 500ms;
-  -webkit-transition: max-height ease-in-out 500ms;
-  margin-bottom: 20px;
-}
 body .container .results {
   display: none;
+}
+body .container .results.show {
+  display: block;
 }
 body .container .results .output ul.json li {
   display: inline;
@@ -243,9 +221,6 @@ body .container .results .output.raw pre.pretty {
 }
 body .container .results .output.pretty pre.raw {
   display: none;
-}
-body .container .results .show {
-  display: block;
 }
 /* THE FOLLOWING NEEDS TIDYING UP TAKING INTO ACCOUNT THAT WE ARE NOW USING LESS */
 body.step1 h2,

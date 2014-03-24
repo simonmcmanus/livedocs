@@ -1,12 +1,13 @@
 
 var $ = require('jquery');
 var pretty = require('./lib/prettyprint.js');
+var generateHash = require('../../api/lib/generateHash');
 
 
-var prepUrl = exports._prepUrl = function(url, tokens) {
-  var queryParams = ['query', 'page', 'size', 'sort', 'order', '$id$'];
+var prepUrl = function(url, tokens) {
+  var queryParams = ['query', 'page', 'size', 'sort', 'order', '$id$',
+        'detail', 'assetDetail', 'images', 'revisions', 'rights'];
   for (var a = 0; queryParams.length > a; a++) {
-    console.log('=--> ba', tokens[queryParams[a]]);
     if (tokens && tokens[queryParams[a]]) {
       var seperator  = (url.indexOf('?') === -1) ? '?' : '&';
       url = url + seperator + encodeURIComponent(queryParams[a]) +
@@ -15,7 +16,6 @@ var prepUrl = exports._prepUrl = function(url, tokens) {
   }
   return url;
 };
-
 
  var tokenise = function(url, tokens) {
   for (var token in tokens) {
@@ -35,9 +35,9 @@ $(function() {
     $parent.toggleClass('pretty', !$parent.hasClass('pretty'));
   })
 
-  $('#changeAuth').click(function() {
-    $('body').removeClass('step2').addClass('step1');
-  });
+  // $('#changeAuth').click(function() {
+  //   $('body').removeClass('step2').addClass('step1');
+  // });
 
   $('form#key').submit(function(e) {
     e.preventDefault();
@@ -49,11 +49,11 @@ $(function() {
          authorization: getHash($(this))
       },
       complete: function (response, status) {
-        console.log(response.statusText, status);
         if(response.statusText === 'OK') {
-          $('body').removeClass('step1').addClass('step2');
+            alert('Key and Secret are valid.');
+ //         $('body').removeClass('step1').addClass('step2');
         }else {
-          $('body').removeClass('step2').addClass('step1');
+//          $('body').removeClass('step2').addClass('step1');
           alert('Please enter a valid key and secret to proceed.');
         }
       }
@@ -95,14 +95,20 @@ $(function() {
       }, {}
     );
     $form.addClass('withResults');
+    var method = $form.attr('method');
+
+    if(method === 'GET') {
+      action = prepUrl(action, values);
+    }
 
     var url = tokenise(action, values);
 
     var headers = {
        authorization: getHash($('form#key'))
     };
+
     var options = {
-      type: $form.attr('method'),
+      type: method,
       url: url,
       headers: headers,
       complete: function (response, status) {
@@ -113,21 +119,22 @@ $(function() {
       }
     };
     if(values.body) {
-      console.log('sending body');
       options.dataType = 'json';
-      options.data = JSON.parse(values.body);
+
+      options.data = values.body;
+      options.contentType = 'application/json';
+
+      //debugger;
     } else {
-      options.data = $form.serialize();
+      if(method !== 'GET') {
+        options.data = $form.serialize();
+      }
     }
     $.ajax(options);
   });
 
   function getHash($form) {
-    var key = $form.find('#key').val();
-    var secret = $form.find('#secret').val();
-    var crypto = require('crypto');
-    var hash = crypto.createHmac('sha256', secret).update(key).digest('hex');
-    return key + ':' + hash;
+    return generateHash($form.find('#key').val(), $form.find('#secret').val());
   }
 
   // remember the key and secret values.
