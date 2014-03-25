@@ -1,6 +1,6 @@
-form(data-action-template= prefix + method.URI, method=method.HTTPMethod, target='base').hidden
-  if method.Synopsis
-    div.synopsis=method.Synopsis
+form(data-action-template= prefix + method.URI, method=method.method, target='base').hidden
+  if method.synopsis
+    div.synopsis=method.synopsis
 
   table
     if method.parameters.length > 0

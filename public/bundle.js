@@ -9130,7 +9130,6 @@ return jQuery;
 }));
 
 },{}],3:[function(require,module,exports){
-
 var $ = require('jquery');
 var pretty = require('../lib/prettyprint.js');
 var generateHash = require('../../../api/lib/generateHash');
@@ -9241,7 +9240,7 @@ $(function() {
       url: url,
       headers: headers,
       complete: function (response, status) {
-        updateResults($form, this.url, headers, response.status, response.responseJSON);
+        updateResults($form, this.url, headers, response.status || response.statusText, response.responseJSON);
         $submit.removeClass('loading');
         $form.find('.results').addClass('show');
         $form.find('.clear').removeAttr('disabled');
@@ -9259,6 +9258,7 @@ $(function() {
         options.data = $form.serialize();
       }
     }
+    options.timeout = 1;
     $.ajax(options);
   });
 

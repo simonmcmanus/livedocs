@@ -9,12 +9,12 @@ spec.css = fs.readFileSync( __dirname + '/public/less/index.css', {
   encoding: 'utf8'
 });
 
-spec.js = fs.readFileSync(process.cwd()  + '/public/bundle.js', {
+spec.js = fs.readFileSync( __dirname  + '/public/bundle.js', {
   encoding: 'utf8'
 });
 
 var templates = {
-  index: fs.readFileSync(process.cwd()  + '/views/index.jade')
+  index: fs.readFileSync( __dirname + '/views/index.jade' )
 }
 
 var jade = require('jade');

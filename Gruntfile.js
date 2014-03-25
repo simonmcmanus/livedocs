@@ -21,7 +21,7 @@ module.exports = function(grunt) {
           ext: 'jade',
           watch: ['./views'],
           args: [
-            '../api/iorest/api/specs/latest.json',
+            '../api/iorest/specs/latest.json',
             '../api/iorest'
           ]
         }
@@ -30,7 +30,7 @@ module.exports = function(grunt) {
         options: {
           exec: 'sh',
           ext: 'js',
-          watch: ['../api/routes'],
+          watch: ['../api/lib', '../api/routes', '../api/docs'],
           args: ['./bin/routes.sh']
         }
       },
@@ -55,6 +55,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-nodemon');
 
-  grunt.registerTask('default', ['concurrent']);
-  //grunt.registerTask('dev', ['nodemon:spec']);
+  grunt.registerTask('dev', ['concurrent']);
 };

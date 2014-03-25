@@ -45,6 +45,7 @@ body form#key {
   border-top: 0;
   font-size: 0.8em;
   border-radius: 0 0 5px 5px;
+  margin-right: 7px;
   transition: all ease-in-out 500ms;
   -o-transition: all ease-in-out 500ms;
   -moz-transition: all ease-in-out 500ms;

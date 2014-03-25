@@ -27,10 +27,10 @@ html
 
     each method in endpoint.methods
       if(!method.hidden)
-        div(class="#{method.HTTPMethod}").container
+        div(class="#{method.method}").container
           div.header
-            span.verb=method.HTTPMethod
+            span.verb=method.method
             h3=method.URI
-            if method.MethodName
-              div.name=method.MethodName
+            if method.name
+              div.name=method.name
           include ./form
