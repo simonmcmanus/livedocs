@@ -1,7 +1,11 @@
 tr
 td.name=param.name
 td
-  select(name=param.name, id=param.name)
+  - var required = false;
+  - if(param.required) {
+  -   required = true;
+  - }
+  select(name=param.name, id=param.name, required=required)
     each option in param.options
       option(label=option)=option
 td

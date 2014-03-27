@@ -1,34 +1,59 @@
 module.exports = function(grunt) {
   grunt.initConfig({
-    browserify2: {
+    pkg: grunt.file.readJSON('package.json'),
+    concurrent: {
       dev: {
-        entry: './public/interactions.js',
-        mount: './bundle.js',
-        server: './bundle.js',
-        debug: true
-      },
-      compile: {
-        entry: './public/interactions.js',
-        compile: './bundle.js'
+        tasks: [
+          'nodemon:spec',
+          'nodemon:less',
+          'nodemon:jade',
+          'nodemon:browserify'
+        ],
+        options: {
+          logConcurrentOutput: true
+        }
       }
     },
-    watch: {
-      scripts: {
-        files: '**/*.js',
-        tasks: ['browserify2:compile'],
+    nodemon: {
+      jade: {
+        script: './generate-markup.js',
         options: {
-          interrupt: true,
-        },
+          ext: 'jade',
+          watch: ['./views'],
+          args: [
+            '../api/iorest/specs/latest.json',
+            '../api/iorest/api'
+          ]
+        }
       },
-    },
-    markup: {
-
+      spec: {
+        options: {
+          exec: 'sh',
+          ext: 'js',
+          watch: ['../api/lib', '../api/routes', '../api/docs'],
+          args: ['./bin/routes.sh']
+        }
+      },
+      less: {
+        options: {
+          exec: 'sh',
+          ext: 'less',
+          watch: ['./public/less'],
+          args: ['./bin/css.sh']
+        }
+      },
+      browserify: {
+        options: {
+          exec: 'sh',
+          ext: 'js',
+          watch: ['./public/browserify'],
+          args: ['./bin/js.sh']
+        }
+      }
     }
   });
-  grunt.loadNpmTasks('grunt-browserify2');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-//  grunt.registerTask('default', 'browserify2:dev');
-  grunt.registerTask('default', 'browserify2:compile');
-  grunt.registerTask('compile', 'browserify2:compile');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-nodemon');
 
+  grunt.registerTask('dev', ['concurrent']);
 };

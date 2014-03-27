@@ -1,0 +1,311 @@
+body {
+  margin: 1em;
+  color: #444;
+  font-family: arial;
+}
+body noscript {
+  background: red;
+  width: 100%;
+  color: #fff;
+  display: block;
+  margin: 3em 0;
+  text-align: center;
+  font-size: 1.2em;
+}
+body h4 {
+  margin: 0;
+}
+body li {
+  list-style: none;
+}
+body pre {
+  background-color: ghostwhite;
+  border: 1px solid silver;
+  padding: 10px 20px;
+  font-size: 0.9em;
+  word-wrap: break-word;
+}
+body .top {
+  background-color: #0085cf;
+  border: 1px solid #868891;
+  padding: 3em;
+  z-index: 100;
+  position: relative;
+  border-radius: 5px 5px 5px 0;
+}
+body .top h1 {
+  font-size: 24px;
+  display: inline;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+body form#key {
+  padding: 20px;
+  border: 1px solid #B8B9BD;
+  border-top: 0;
+  font-size: 0.8em;
+  border-radius: 0 0 5px 5px;
+  margin-right: 7px;
+  transition: all ease-in-out 500ms;
+  -o-transition: all ease-in-out 500ms;
+  -moz-transition: all ease-in-out 500ms;
+  -webkitenjoy-transition: all ease-in-out 500ms;
+}
+body form#key label {
+  margin-right: 0.5em;
+  margin-left: 3em;
+}
+body form#key input#key {
+  width: 160;
+}
+body form#key input#secret {
+  width: 300;
+}
+body form#key div.detail {
+  margin-bottom: 20px;
+}
+body .step1 {
+  overflow: hidden;
+}
+body .step1 form#key #changeAuth {
+  display: none;
+}
+body .step1 form#key div.detail {
+  max-height: 90px;
+}
+body .step2 form#key {
+  top: -13px;
+  position: relative;
+}
+body .step2 form#key div.detail {
+  max-height: 0;
+  overflow: hidden;
+}
+body .step2 #checkAuth {
+  display: none;
+}
+body .endpointDescription {
+  margin: 1.3em;
+}
+body .container {
+  padding: 2px;
+  opacity: 1;
+  margin: 0 5px 5px 20px;
+  transition: opacity ease-in-out 500ms;
+  -o-transition: opacity ease-in-out 500ms;
+  -moz-transition: opacity ease-in-out 500ms;
+  -webkit-transition: opacity ease-in-out 500ms;
+}
+body .container form {
+  background-color: #FCFEFF;
+  padding: 1em;
+  margin: 0 0.4em 0 0;
+  height: auto;
+  max-height: 100%;
+  /*    transition: max-height ease-in-out 500ms;
+      -o-transition: max-height ease-in-out 500ms;
+      -moz-transition: max-height ease-in-out 500ms;
+      -webkit-transition: max-height ease-in-out 500ms;
+      */
+  border: 1px solid #ddd;
+  border-top: 0;
+  top: 0;
+  position: relative;
+  opacity: 1;
+}
+body .container form table {
+  width: 100%;
+}
+body .container form table th {
+  font-size: 0.7em;
+  text-align: left;
+  padding: 0.5em;
+}
+body .container form table th.description {
+  width: 100%;
+}
+body .container form table td {
+  font-size: 0.8em;
+  padding: 0.5em;
+  line-height: 1.8em;
+  vertical-align: top;
+}
+body .container form table td.name {
+  text-align: right;
+}
+body .container form table tr:hover {
+  background: #fff;
+}
+body .container form table tr.noHover:hover {
+  background: none;
+}
+body .container form table textarea {
+  width: 100%;
+  height: 10em;
+}
+body .container form.hidden {
+  padding-top: 0;
+  opacity: 0;
+  overflow: hidden;
+  height: 0;
+  max-height: 0%;
+}
+body .container form.withResults {
+  max-height: initial;
+}
+body .container .synopsis {
+  font-size: 0.8em;
+  margin: 7px 6px;
+}
+body .container .header {
+  margin: 0;
+  border: 1px solid;
+  cursor: pointer;
+  background-color: #ddd;
+  min-height: 31px;
+  border-radius: 3px 3px 3px 0;
+}
+body .container .header h3 {
+  display: inline;
+  padding: 1em;
+  font-size: 1em;
+  line-height: 30px;
+}
+body .container .header .name {
+  font-size: 0.9em;
+  margin: 4px 9px;
+}
+body .container .header span.verb {
+  background-color: ghostwhite;
+  padding: 5px 8px;
+  margin: 0px;
+  border-radius: 2px;
+  /* height: 100%; */
+  top: 0px;
+  left: 1px;
+  position: relative;
+}
+body .container .results {
+  display: none;
+}
+body .container .results.show {
+  display: block;
+}
+body .container .results .output ul.json li {
+  display: inline;
+  top: 13px;
+  left: -50px;
+  position: relative;
+}
+body .container .results .output ul.json li span {
+  padding: 0.4em;
+}
+body .container .results .output ul.json li span.name {
+  font-weight: bold;
+  width: 100px;
+  text-align: right;
+  display: inline-block;
+}
+body .container .results .output ul.json li a {
+  margin: 0 10px;
+  padding: 5px 10px;
+  text-decoration: none;
+}
+body .container .results .output .json-key {
+  color: brown;
+}
+body .container .results .output .json-value {
+  color: navy;
+}
+body .container .results .output .json-string {
+  color: olive;
+}
+body .container .results .output.raw pre.pretty {
+  display: none;
+}
+body .container .results .output.pretty pre.raw {
+  display: none;
+}
+/* THE FOLLOWING NEEDS TIDYING UP TAKING INTO ACCOUNT THAT WE ARE NOW USING LESS */
+body.step1 h2,
+body.step1 .container {
+  opacity: 0;
+}
+#checkAuth,
+#changeAuth {
+  margin-left: 20px;
+}
+form[data-action-template] {
+  padding-bottom: 7px;
+}
+input[type="submit"] {
+  padding-left: 2px;
+}
+input[type="submit"].loading {
+  padding-left: 20px;
+  background-image: url(data:image/gif;base64,R0lGODlhCgAKALMAALXF5qW13pSt3oyl1oSl1oSc1nuc1mOMzv///wAAAAAAAAAAAAAAAAAAAAAAAAAAACH/C05FVFNDQVBFMi4wAwEAAAAh+QQJBwAIACwAAAAACgAKAAAEHhBJdM6UxlB78/2gJBAhIAhhegXF1yJBgABDCgBXBAAh+QQJBwAIACwAAAAACQAJAAAEHBBJZMxEglB7DhZXd41BMUpBcK4XMIwAAsSIKUUAIfkECQcACAAsAAAAAAoACQAABBwQSSTIlKFQgYzBweVdpAQM5XEAQHqUpQZf7RQBACH5BAkHAAgALAAAAAAKAAkAAAQcEEkUypRg0IAEwcAlCFc5WaVhmJLKluF0HO+MRAAh+QQJBwAIACwAAAAACgAKAAAEHRBJBMachQIU8p1B8I3UKBAkIghpaxjfcSBvPE8RACH5BAkHAAgALAAAAAAKAAoAAAQcEElZ5gQWDJsx/2BQhQFoHYclEBKKGAYiCBxsRQAh+QQJBwAIACwAAAAACgAKAAAEHRBJCaa95eo9z9HA4IEVJxmGFWQIiggEEgSXIFgRACH5BAkHAAgALAAAAQAKAAkAAAQeEJ2DagV12s25MR1SfGG5CcQGDJUgIEGBANgWBFsEADs=);
+  background-repeat: no-repeat;
+  background-position: 6px 7px;
+}
+input[type="button"],
+input[type="submit"] {
+  background: white;
+  border: 1px solid silver;
+  border-radius: 5px;
+  padding: 5px 10px;
+}
+input[type="submit"]:hover {
+  border: 1px solid #aaa;
+}
+div.output.raw a.raw,
+div.output.pretty a.pretty {
+  /*active*/
+  background: ghostwhite;
+  border-bottom: 0;
+  color: #222;
+}
+div.container.GET .header {
+  background: #e7f0f7;
+}
+div.container div.pretty a.pretty,
+div.container div.raw a.raw {
+  border: 1px solid silver;
+  border-bottom: 0;
+}
+div.container.GET .header,
+div.container.GET form {
+  border-color: #aecce4;
+}
+div.container.GET .header .verb {
+  background-color: #aecce4;
+}
+div.container.DELETE .header {
+  border-color: #deb3b3;
+}
+div.container.DELETE .header {
+  background: #f5e8e8;
+}
+div.container.DELETE .header .verb {
+  background-color: #deb3b3;
+}
+div.container.PUT form {
+  border-color: #e9cead;
+}
+div.container.PUT .header {
+  background: #f9f2e9;
+}
+div.container.PUT .header {
+  border-color: #e9cead;
+}
+div.container.PUT .header .verb {
+  background-color: #e9cead;
+}
+div.container.POST .header {
+  border-color: #afe1c0;
+}
+div.container.POST .header {
+  background: #e7f6ec;
+}
+div.container.POST .header .verb {
+  background-color: #afe1c0;
+}

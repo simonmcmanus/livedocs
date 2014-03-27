@@ -1,0 +1,437 @@
+{
+    "endpoints": [
+        {
+            "name": "Assets",
+            "methods": [
+                {
+                    "MethodName": "Create an asset",
+                    "Synopsis": "Create a new AdBank asset.",
+                    "URI": "/assets",
+                    "HTTPMethod": "POST",
+                    "parameters": [
+                        {
+                            "name": "name",
+                            "required": true,
+                            "description": "The name of the new asset to appear in the meta data of the asset."
+                        },
+                        {
+                            "name": "path",
+                            "description": "The path of the new asset."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Assets List",
+                    "Synopsis": "List all assets, or search by fields specified using the query param.",
+                    "URI": "/assets",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "query",
+                            "type": "string",
+                            "description": "Lucene search term eg: `brand:BT Beam Uploads`. Limited to 3 levels of complexity. If not is specified will return a list of all the assets you have access to. more details at http://lucene.apache.org/core/2_9_4/queryparsersyntax.html"
+                        },
+                        {
+                            "name": "page",
+                            "default": 1,
+                            "location": "query",
+                            "type": "number",
+                            "description": "The page number, if there are more pages the more property will be true."
+                        },
+                        {
+                            "name": "sort",
+                            "location": "query",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "size",
+                            "location": "query",
+                            "default": 10,
+                            "type": "number",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "order",
+                            "location": "query",
+                            "default": "ASC",
+                            "input": "select",
+                            "type": "string",
+                            "options": [
+                                "ASC",
+                                "DESC"
+                            ],
+                            "description": "How to order the fields, ASC or DESC."
+                        },
+                        {
+                            "name": "detail",
+                            "input": "checkbox",
+                            "location": "query",
+                            "description": "Return the full asset details."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Get an Asset",
+                    "Synopsis": "Get an Asset by it`s id.",
+                    "URI": "/assets/:id",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "required": true,
+                            "description": "The ID of the asset you wish to fetch. This request will return additional iformation if you select the options below."
+                        },
+                        {
+                            "name": "rights",
+                            "label": "Rights",
+                            "input": "checkbox",
+                            "description": "Include usage rights in the response"
+                        },
+                        {
+                            "name": "images",
+                            "label": "Images",
+                            "input": "checkbox",
+                            "description": "Include links to images in the response"
+                        },
+                        {
+                            "name": "revisions",
+                            "label": "Revisions",
+                            "input": "checkbox",
+                            "description": "Include revisions in the response"
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Update an Asset",
+                    "URI": "/assets/:id",
+                    "HTTPMethod": "PUT",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "required": true,
+                            "description": "The ID of the asset you wish to update."
+                        },
+                        {
+                            "name": "body",
+                            "required": true,
+                            "type": "json",
+                            "input": "textarea",
+                            "description": "The new data for the asset you are updating."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Assets",
+            "methods": [
+                {
+                    "MethodName": "Get media",
+                    "Synopsis": "Provides a 302 redirect to the image which should be valid for 15  seconds.",
+                    "URI": "/media?assetId=:assetId&fileId=:fileId&accessToken=:accessToken",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "assetId",
+                            "required": true,
+                            "description": "The ID of the asset you wish to fetch."
+                        },
+                        {
+                            "name": "fileId",
+                            "required": true,
+                            "description": "The ID of the file you wish to fetch, availble from the asset request."
+                        },
+                        {
+                            "name": "accessToken",
+                            "required": true,
+                            "description": "The access token - available in the assets request."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "methods": [
+                {
+                    "MethodName": "Auth.",
+                    "Synopsis": "Used to test authorization, returns ok if authorized.",
+                    "URI": "/auth",
+                    "HTTPMethod": "GET",
+                    "parameters": []
+                }
+            ]
+        },
+        {
+            "name": "Collections",
+            "methods": [
+                {
+                    "MethodName": "Collections List",
+                    "Synopsis": "List all collections you can access. Results can be searched using the query parameter.",
+                    "URI": "/collections",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "query",
+                            "type": "string",
+                            "description": "Lucene search term eg: `brand:BT Beam Uploads`. Limited to 3 levels of complexity. If not is specified will return a list of all the assets you have access to. more details at http://lucene.apache.org/core/2_9_4/queryparsersyntax.html"
+                        },
+                        {
+                            "name": "page",
+                            "default": 1,
+                            "location": "query",
+                            "type": "number",
+                            "description": "The page number, if there are more pages the more property will be true."
+                        },
+                        {
+                            "name": "sort",
+                            "location": "query",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "size",
+                            "location": "query",
+                            "default": 10,
+                            "type": "number",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "order",
+                            "location": "query",
+                            "default": "ASC",
+                            "input": "select",
+                            "type": "string",
+                            "options": [
+                                "ASC",
+                                "DESC"
+                            ],
+                            "description": "How to order the fields, ASC or DESC."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Get the Assets for a Collection",
+                    "Synopsis": "Gets all the assets in a collection.",
+                    "URI": "/collections/:collectionId",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "collectionId",
+                            "required": true,
+                            "description": "The ID of the collection you wish to fetch."
+                        },
+                        {
+                            "name": "query",
+                            "description": "Lucene query to query the assets in the collection."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Folders",
+            "methods": [
+                {
+                    "MethodName": "List files in a  folder.",
+                    "Synopsis": "Given a folderId, get the files for it.",
+                    "URI": "/folders",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "folderId",
+                            "required": true,
+                            "description": "The folder id for which you wish to list the files."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "methods": []
+        },
+        {
+            "name": "Presentations",
+            "methods": [
+                {
+                    "MethodName": "Presentations List",
+                    "Synopsis": "Get presentations which you can access. When the query param is given it will filter the results.",
+                    "URI": "/presentations",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "query",
+                            "type": "string",
+                            "description": "Lucene search term eg: `brand:BT Beam Uploads`. Limited to 3 levels of complexity. If not is specified will return a list of all the assets you have access to. more details at http://lucene.apache.org/core/2_9_4/queryparsersyntax.html"
+                        },
+                        {
+                            "name": "page",
+                            "default": 1,
+                            "location": "query",
+                            "type": "number",
+                            "description": "The page number, if there are more pages the more property will be true."
+                        },
+                        {
+                            "name": "sort",
+                            "location": "query",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "size",
+                            "location": "query",
+                            "default": 10,
+                            "type": "number",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "order",
+                            "location": "query",
+                            "default": "ASC",
+                            "input": "select",
+                            "type": "string",
+                            "options": [
+                                "ASC",
+                                "DESC"
+                            ],
+                            "description": "How to order the fields, ASC or DESC."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Get a Presentation",
+                    "Synopsis": "Get an Presentation by it`s id.",
+                    "URI": "/presentations/:id",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "required": true,
+                            "description": "The ID of the presentation you wish to fetch."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Projects",
+            "methods": [
+                {
+                    "MethodName": "Create a folder for a given project",
+                    "Synopsis": "Create a folder for the specified project.",
+                    "URI": "/projects/:projectId/folder",
+                    "HTTPMethod": "POST",
+                    "parameters": [
+                        {
+                            "name": "projectId",
+                            "required": true,
+                            "description": "The ID of the folder you wish to create."
+                        },
+                        {
+                            "name": "name",
+                            "required": true,
+                            "description": "The file name."
+                        },
+                        {
+                            "name": "path",
+                            "default": "/",
+                            "description": "The path for the file."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Projects List",
+                    "Synopsis": "Get Projects which you can access. When the query param is given it will filter the results.",
+                    "URI": "/projects",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "query",
+                            "type": "string",
+                            "description": "Lucene search term eg: `brand:BT Beam Uploads`. Limited to 3 levels of complexity. If not is specified will return a list of all the assets you have access to. more details at http://lucene.apache.org/core/2_9_4/queryparsersyntax.html"
+                        },
+                        {
+                            "name": "page",
+                            "default": 1,
+                            "location": "query",
+                            "type": "number",
+                            "description": "The page number, if there are more pages the more property will be true."
+                        },
+                        {
+                            "name": "sort",
+                            "location": "query",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "size",
+                            "location": "query",
+                            "default": 10,
+                            "type": "number",
+                            "description": "Sort the results by a specified fields."
+                        },
+                        {
+                            "name": "order",
+                            "location": "query",
+                            "default": "ASC",
+                            "input": "select",
+                            "type": "string",
+                            "options": [
+                                "ASC",
+                                "DESC"
+                            ],
+                            "description": "How to order the fields, ASC or DESC."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Get a Project",
+                    "Synopsis": "Get an Project by it`s id.",
+                    "URI": "/projects/:id",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "required": true,
+                            "description": "The ID of the project you wish to fetch."
+                        }
+                    ]
+                },
+                {
+                    "MethodName": "Update an existing project",
+                    "Synopsis": "Update an existing project.",
+                    "URI": "/projects/:id",
+                    "HTTPMethod": "PUT",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "required": true,
+                            "description": "The ID of the project you wish to update. "
+                        },
+                        {
+                            "name": "body",
+                            "required": true,
+                            "location": "boddy",
+                            "input": "textarea",
+                            "description": "The new project object stringified"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Usage rights",
+            "methods": [
+                {
+                    "MethodName": "Usage rights for an Asset or File",
+                    "Synopsis": "Get the usage rights for an asset.",
+                    "URI": "/rights/rights/:id",
+                    "HTTPMethod": "GET",
+                    "parameters": [
+                        {
+                            "name": "id",
+                            "required": true,
+                            "description": "The ID of the asset or file you wish to fetch the usage  rights for."
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

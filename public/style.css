@@ -19,6 +19,11 @@ form#key div.detail {
    -o-transition: max-height ease-in-out 500ms;
    -moz-transition: max-height ease-in-out 500ms;
    -webkit-transition: max-height ease-in-out 500ms;
+   margin-bottom: 20px;
+}
+
+form[data-action-template] {
+  padding-bottom: 7px;
 }
 
 
@@ -63,11 +68,11 @@ form {
   margin: 0 0.4em 0 0;
   height: auto;
   max-height: 100%;
-    transition: all ease-in-out 500ms;
-     -o-transition: all ease-in-out 500ms;
-     -moz-transition: all ease-in-out 500ms;
-     -webkit-transition: all ease-in-out 500ms;
-    border: 1px solid #ddd;
+/*    transition: max-height ease-in-out 500ms;
+     -o-transition: max-height ease-in-out 500ms;
+     -moz-transition: max-height ease-in-out 500ms;
+     -webkit-transition: max-height ease-in-out 500ms;
+*/    border: 1px solid #ddd;
     border-top: 0;
     top: 0;
     position: relative;
@@ -127,7 +132,7 @@ div.output.raw pre.pretty {
 
 ul.json li{
   display: inline;
-  top: 15px;
+  top: 13px;
   left: -50px;
   position: relative;
 }
@@ -143,7 +148,6 @@ div.output.pretty a {
 div.output.raw a.raw,
 div.output.pretty a.pretty {  /*active*/
   background: ghostwhite;
-  border: 1px solid silver;
   border-bottom: 0;
   color: #222;
 }
@@ -219,12 +223,13 @@ tr.noHover:hover {
 }
 
 pre {
-  font-size: 0.7em;
+  font-size: 0.9em;
+  word-wrap: break-word;
 }
 
 div.header {
   margin: 0;
-  cursor: hand;
+  cursor: pointer;
   background-color: #ddd;
   min-height: 31px;
   border-radius: 3px 3px 3px 0;
@@ -232,13 +237,24 @@ div.header {
 
 }
 
+input[type="button"] {
+  cursor: pointer;
+  background: red;
+}
 
 
-div.header .synopsis {
+
+div.header .name {
   font-size: 0.9em;
   margin: 4px 9px;
 
 }
+
+.synopsis {
+  font-size: 0.8em;
+  margin: 7px 6px;
+}
+
 
 span.verb {
 background-color: ghostwhite;
@@ -246,7 +262,7 @@ padding: 5px 8px;
 margin: 0px;
 border-radius: 2px;
 /* height: 100%; */
-top: 1px;
+top: 0px;
 left: 1px;
 position: relative;
 }
@@ -292,9 +308,6 @@ form#key {
    -webkit-transition: all ease-in-out 500ms;
 }
 
-form#key div {
-  margin-bottom: 1em;
-}
 form#key label {
   margin-right: 0.5em;
   margin-left: 3em;
@@ -348,13 +361,17 @@ div.header {
 
 }
 
-div.container.GET div.output.raw a.raw,
-div.container.GET div.output.pretty a.pretty,
-div.container.GET pre,
 div.container.GET .header {
   background: #e7f0f7;
 }
-div.container.GET pre,
+
+div.container div.pretty  a.pretty,
+div.container div.raw a.raw {
+border: 1px solid silver;
+border-bottom: 0;
+}
+
+
 div.container.GET .header,
 div.container.GET form {
  border-color: #aecce4;
@@ -364,14 +381,10 @@ div.container.GET .header .verb {
  background-color: #aecce4;
 }
 
-div.container.DELETE .header,
-div.container.DELETE form {
+div.container.DELETE .header {
   border-color: #deb3b3;
 }
 
-div.container.DELETE div.output.raw a.raw,
-div.container.DELETE div.output.pretty a.pretty,
-div.container.DELETE pre,
 div.container.DELETE .header {
   background: #f5e8e8;
 }
@@ -384,13 +397,9 @@ div.container.PUT form {
   border-color: #e9cead;
 }
 
-div.container.PUT div.output.raw a.raw,
-div.container.PUT div.output.pretty a.pretty,
-div.container.PUT pre,
 div.container.PUT .header {
   background: #f9f2e9
 }
-div.container.PUT pre,
 div.container.PUT .header {
   border-color: #e9cead;
 
@@ -400,15 +409,10 @@ div.container.PUT .header .verb {
   background-color: #e9cead;
 }
 
-div.container.POST pre,
-div.container.POST .header,
-div.container.POST form {
+div.container.POST .header{
   border-color: #afe1c0;
 }
 
-div.container.POST div.output.raw a.raw,
-div.container.POST div.output.pretty a.pretty,
-div.container.POST pre,
 div.container.POST .header {
   background: #e7f6ec;
 }
