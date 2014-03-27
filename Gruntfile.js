@@ -22,7 +22,7 @@ module.exports = function(grunt) {
           watch: ['./views'],
           args: [
             '../api/iorest/specs/latest.json',
-            '../api/iorest'
+            '../api/iorest/api'
           ]
         }
       },

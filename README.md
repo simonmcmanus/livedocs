@@ -13,9 +13,23 @@ To generate a ioRest file from a spec file just run the ioRest command, the
  first argument should point to an ioRest spec file, the second argument should
  point to:
 
-```
+```json
   iorest ./specs/sample.json ./out.html
 ```
+
+##Authentication
+
+IORest does not support OAuth, it is designed to work with APIs that can serve
+content to a standalone webpage.
+
+We use a key and secret to generate a hash and then send the hashed value
+along to the server. I'm keen that IORest support other methods of auth but at
+the moment you will need to create your own generateHash function in
+interactions.js.
+
+If you would like to add an authentication method let me know and I will help
+out whereever possible.
+
 
 ##Spec Format
 The best way to get an idea how the spec should be formed is to look at the
@@ -29,7 +43,7 @@ And this is the HTML file generated from the html form:
 
 ##Format Overview:
 
-```
+```json
 {
   endpoints : [
     {
@@ -59,12 +73,14 @@ And this is the HTML file generated from the html form:
 
 An endpoint is a collection of methods with a name property.
 
+Endpoints consist of a name, description and an array of methods.
+
 
 ### Methods
 
 Each method can have the following properties:
 
-```
+```json
 {
   name: 'Create an Asset',
   synopsis: 'What the method does',
@@ -124,7 +140,7 @@ body it will be the only field sent in the body.
 If you specify select as the input type you should also add an options array to
  the parameter object to state which values are allowed for this list.
 
-```
+```json
 {
     "name": "order",
     "location": "query",
@@ -148,7 +164,7 @@ exist in the options array.
 Here is a description of the parameters you can set:
 
   parameter:
-```
+```json
   {
     name:
     default:

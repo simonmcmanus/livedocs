@@ -9258,7 +9258,7 @@ $(function() {
         options.data = $form.serialize();
       }
     }
-    options.timeout = 1;
+    options.timeout = 10000;
     $.ajax(options);
   });
 

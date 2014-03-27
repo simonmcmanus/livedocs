@@ -24,15 +24,15 @@ spec.filename = __dirname + '/views/partials/test.jade';
 // Compile a function
 
 
-var IndexFn = jade.compile(templates.index, spec);
+var indexFn = jade.compile(templates.index, spec);
 
 // Render the function
-var html = IndexFn(spec);
+var html = indexFn(spec);
 
 var v = spec.version.split('.')[0];
 
 
-var out = path.join(process.cwd(), process.argv[3], '/v' + v + '.html');
+var out = path.join(process.cwd(), process.argv[3], '/v' + v + '/index.html');
 
 fs.writeFile(out, html, function(err) {
   if (!err) {

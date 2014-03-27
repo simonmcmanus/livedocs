@@ -24,6 +24,7 @@ html
 
   each endpoint in endpoints
     h2=endpoint.name
+    div.endpointDescription!=endpoint.description
 
     each method in endpoint.methods
       if(!method.hidden)
