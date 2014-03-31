@@ -31,7 +31,7 @@ html
         div(class="#{method.method}").container
           div.header
             span.verb=method.method
-            h3=method.URI
+            h3=method.url
             if method.name
               div.name=method.name
           include ./form

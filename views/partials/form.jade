@@ -1,4 +1,6 @@
-form(data-action-template= prefix + method.URI, method=method.method, target='base').hidden
+
+-console.log(method);
+form(data-action-template= prefix + method.url, method=method.method, target='base').hidden
   if method.synopsis
     div.synopsis=method.synopsis
 
@@ -11,6 +13,7 @@ form(data-action-template= prefix + method.URI, method=method.method, target='ba
         th="location"
         th="type"
     each param in method.parameters
+      //-console.log(param)
       if param.input != "textarea" && param.input!="checkbox" && !param.hidden
         if param.input=="select"
           include ./select
