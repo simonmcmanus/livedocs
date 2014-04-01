@@ -53,7 +53,7 @@ And this is the HTML file generated from the html form:
       "methods": [
         {
           "name": "Create an Asset",
-          "synopsis": 'Create a new asset.",
+          "synopsis": "Create a new asset.",
           "method": "GET",
           "url": "/assets",
           "parameters": [
