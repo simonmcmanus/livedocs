@@ -1,29 +1,29 @@
-#IORest
-Given a json spec, generates a html file which can be used to test calls to an api.
+#LiveDocs
+Given a json spec, generates a html file which can be used to test calls to an API.
 
 ##Install
 
 ```
-  npm install -g iorest
+  npm install -g live-docs
 ```
 
 ##Usage
 
-To generate a ioRest file from a spec file just run the ioRest command, the
- first argument should point to an ioRest spec file, the second argument should
- point to:
+To generate Live docs from a spec file just run the live-docs command, the
+ first argument should point to an live docs spec file, the second argument should
+ point to the html file you wish to output:
 
 ```json
-  iorest ./specs/sample.json ./out.html
+  live-docs ./specs/sample.json ./out.html
 ```
 
 ##Authentication
 
-IORest does not support OAuth, it is designed to work with APIs that can serve
+Live-docs does not support OAuth, it is designed to work with APIs that can serve
 content to a standalone webpage.
 
 We use a key and secret to generate a hash and then send the hashed value
-along to the server. I'm keen that IORest support other methods of auth but at
+along to the server. I'm keen that live-docs support other methods of auth but at
 the moment you will need to create your own generateHash function in
 interactions.js.
 
@@ -45,22 +45,24 @@ And this is the HTML file generated from the html form:
 
 ```json
 {
-  endpoints : [
+  "endpoints" : [
     {
-      name: 'Assets',
-      methods: [
+      "name": "Assets",
+      "description": "All the asset methods",
+      url: : "/assets"
+      "methods": [
         {
-          name: 'Create an Asset',
-          synopsis: 'Create a new asset.',
-          method: 'GET',
-          uri: '/assets',
-          parameters: [
-            name: 'assetId',
-            required: true,
-            type: 'string',
-            location: 'query',
-            default: '1',
-            description: 'The id of the asset you wish to create.'
+          "name": "Create an Asset",
+          "synopsis": 'Create a new asset.",
+          "method": "GET",
+          "url": "/assets",
+          "parameters": [
+            "name": "assetId",
+            "required": true,
+            "type": "string",
+            "location": "query",
+            "default": '1',
+            "description": "The id of the asset you wish to create."
           ]
         }
       ]
@@ -71,7 +73,7 @@ And this is the HTML file generated from the html form:
 
 ###Endpoints
 
-An endpoint is a collection of methods with a name property.
+An endpoint is a collection of methods with at least a name property.
 
 Endpoints consist of a name, description and an array of methods.
 
@@ -82,19 +84,21 @@ Each method can have the following properties:
 
 ```json
 {
-  name: 'Create an Asset',
-  synopsis: 'What the method does',
-  uri: '/assets',
-  method: 'GET',  // GET/PUT/POST/DELETE
-  parameters: [] // see below.
+  "name": "Create an Asset",
+  "synopsis": "What the method does",
+  "uri": "/assets",
+  "method": "GET",
+  "parameters": []
 
 }
 ```
 
+Note that you can specify middleware here too but it will not appear in the live-docs viewer.
+
 
 ### Parameters
 
-Each method should the the parameters which can be passed to the method.
+Each method should define the parameters which can be passed to the method.
 
 
 For each parameter you have the following fields:
@@ -123,14 +127,14 @@ This is used for validation, possible values are:
 
 ####input
 
-This defines the html input that will be used to collect this data. Supported
+This defines the HTML input that will be used to collect the data. Supported
 options include:
 
   * select
   * textarea
   * checkbox
 
-If no input is specifed IORest will default to an input.
+If no input is specifed live-docs will default to an input.
 
 If no input type is specified it will become an input. If location is set to
 body it will be the only field sent in the body.
@@ -166,36 +170,36 @@ Here is a description of the parameters you can set:
   parameter:
 ```json
   {
-    name:
-    default:
-    location: query/body/header
-    hidden: // do not show this parameter.
-    type: number/string/json //html5 input type - text if none provided.
-    input: input/checkbox/select - default is input
-    required: true/false
+    "name": "",
+    "default": "",
+    "location": "query/body/header",
+    "hidden": "",
+    "type": "number/string/json //html5 input type - text if none provided.",
+    "input": "input/checkbox/select - default is input",
+    "required": true
 
   }
 ```
 
-##About
+##About Live Docs
 
-  IORest is inspired by Mashery's IODocs (https://github.com/mashery/iodocs)
+  Live-docs is inspired by Mashery's IODocs (https://github.com/mashery/iodocs)
 
   The differences between the two are:
 
 
-  1.. Decent support for PUTTING/POSTING JSON bodies. The was actually one of the main reason for writing my own, at the time I started writing there was no support for PUT/POST JSON bodies. I found a pull request from two years previous that had not been responded. I poked mashery about this, but by the time they got back to me (only a day later) I had written most of IORest.
+  1.. Decent support for PUTTING/POSTING JSON bodies. The was actually one of the main reason for writing my own, at the time I started writing there was no support for PUT/POST JSON bodies. I found a pull request from two years previous that had not been responded. I poked mashery about this, but by the time they got back to me (only a day later) I had written most of Live-docs.
 
-  2.. No server, IORest generates a HTML file from your routes, so as long as you have CORS enabled you can post directly to your API from your browser. this can make debugging easier and removes an level of abstraction that was unecessary. For me at least.
+  2.. No server, live-docs generates a HTML file from your routes, so as long as you have CORS enabled you can post directly to your API from your browser. this can make debugging easier and removes an level of abstraction that was unecessary. For me at least.
 
-  3.. Standalone file, IORest works as a standalone file, which means you can just send your consumers a HTML file along with any required auth and they can start using testing your API immediately.
+  3.. Standalone file, Live-docs works as a standalone file, which means you can just send your consumers a HTML file along with any required auth and they can start using testing your API immediately.
 
 
-  3.. Parameter Validation, IORest uses the same data validation types as html5 so you get html5 validation for free on the front end (assuming your using a reasonably modern browser).  I have also written Restify middlware which can automatically validate against the main data types serverside.
+  3.. Parameter Validation, Live-docs uses the same data validation types as HTML5 so you get HTML5 validation for free on the front end (assuming your using a reasonably modern browser).  I have also written Restify middlware which can automatically validate against the main data types serverside.
 
   eg, if you specified a field as required, that request will be rejected in middleware just because its in your route spec.
 
-  4.. eco system - IORest has a number of other plugins that can be used with it to automatically create your routes from folders, auto validate....
+  4.. eco system - Live-docs has a number of other plugins that can be used with it to automatically create your routes from folders, auto validate....
 
 
   5.. In browser crypto, lets users enter their key and secret and it will work out the hash for them.
@@ -208,7 +212,7 @@ Here is a description of the parameters you can set:
 
 Please report any issue here:
 
-https://github.com/simonmcmanus/IORest/issues
+https://github.com/simonmcmanus/live-docs/issues
 
 This guide is a work in progress, if you spot any mistakes, please create a github issue.
 
@@ -231,12 +235,16 @@ This command will watch all the relevant files and regenerate the html file when
 In the near future I plan to open source the following components which work with IORest:
 
 
-##IORest Router
+##Live-docs Router
+
+https://github.com/simonmcmanus/livedocs-routeLoader
 
 Store your routes in a logical folder struture and automatically create the spec file and your application from the folder structure
 
 
-##Middleware :
+##Live-docs Middleware:
+
+https://github.com/simonmcmanus/livedocs-middleware
 
 validator - check for required values, type checks and ensure enumerated list values are valid.
 
