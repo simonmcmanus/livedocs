@@ -49,7 +49,7 @@ And this is the HTML file generated from the html form:
     {
       "name": "Assets",
       "description": "All the asset methods",
-      url: : "/assets"
+      url: "/assets"
       "methods": [
         {
           "name": "Create an Asset",
@@ -61,7 +61,7 @@ And this is the HTML file generated from the html form:
             "required": true,
             "type": "string",
             "location": "query",
-            "default": '1',
+            "default": 1",
             "description": "The id of the asset you wish to create."
           ]
         }
