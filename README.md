@@ -49,7 +49,7 @@ And this is the HTML file generated from the html form:
     {
       "name": "Assets",
       "description": "All the asset methods",
-      url: "/assets"
+      url: "/assets",
       "methods": [
         {
           "name": "Create an Asset",
