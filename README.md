@@ -23,7 +23,7 @@ eg, if you are on version 2.3.99 and that's what it says in your spec, you shoul
 
 ##Authentication
 
-Live-docs does not support OAuth, it is designed to work with APIs that can serve content to a standalone web page.
+Livedocs does not support OAuth, it is designed to work with APIs that can serve content to a standalone web page.
 
 We use a key and secret to generate a hash and then send the hashed value
 along to the server. I'm keen that livedocs support other methods of auth but at the moment you will need to create your own generateHash function in
@@ -95,7 +95,7 @@ Each method can have the following properties:
 }
 ```
 
-Note that you can specify middleware here too but it will not appear in the live-docs viewer.
+Note that you can specify middleware here too but it will not appear in the livedocs viewer.
 
 
 ### Parameters
@@ -136,7 +136,7 @@ options include:
   * textarea
   * checkbox
 
-If no input is specified live-docs will default to an input.
+If no input is specified livedocs will default to an input.
 
 If no input type is specified it will become an input. If location is set to
 body it will be the only field sent in the body.
@@ -185,23 +185,23 @@ Here is a description of the parameters you can set:
 
 ##About Live Docs
 
-  Live-docs is inspired by Mashery's IODocs (https://github.com/mashery/iodocs)
+  Livedocs is inspired by Mashery's IODocs (https://github.com/mashery/iodocs)
 
   The differences between the two are:
 
 
-  1.. Decent support for PUTTING/POSTING JSON bodies. The was actually one of the main reason for writing my own, at the time I started writing there was no support for PUT/POST JSON bodies. I found a pull request from two years previous that had not been responded. I poked mashery about this, but by the time they got back to me (only a day later) I had written most of Live-docs.
+  1.. Decent support for PUTTING/POSTING JSON bodies. The was actually one of the main reason for writing my own, at the time I started writing there was no support for PUT/POST JSON bodies. I found a pull request from two years previous that had not been responded. I poked mashery about this, but by the time they got back to me (only a day later) I had written most of Livedocs.
 
-  2.. No server, live-docs generates a HTML file from your routes, so as long as you have CORS enabled you can post directly to your API from your browser. this can make debugging easier and removes an level of abstraction that was unecessary. For me at least.
+  2.. No server, livedocs generates a HTML file from your routes, so as long as you have CORS enabled you can post directly to your API from your browser. this can make debugging easier and removes an level of abstraction that was unecessary. For me at least.
 
-  3.. Standalone file, Live-docs works as a standalone file, which means you can just send your consumers a HTML file along with any required auth and they can start using testing your API immediately.
+  3.. Standalone file, Livedocs works as a standalone file, which means you can just send your consumers a HTML file along with any required auth and they can start using testing your API immediately.
 
 
-  3.. Parameter Validation, Live-docs uses the same data validation types as HTML5 so you get HTML5 validation for free on the front end (assuming your using a reasonably modern browser).  I have also written Restify middleware which can automatically validate against the main data types serverside.
+  3.. Parameter Validation, Livedocs uses the same data validation types as HTML5 so you get HTML5 validation for free on the front end (assuming your using a reasonably modern browser).  I have also written Restify middleware which can automatically validate against the main data types serverside.
 
-  eg, if you specified a field as required, that request will be rejected in middleware just because its in your route spec.
+  eg, if you specified a field as required, if that parameter is no sent to the server the request will be rejected by the middleware just because its in your route spec.
 
-  4.. eco system - Live-docs has a number of other plugins that can be used with it to automatically create your routes from folders, auto validate....
+  4.. eco system - Livedocs has a number of other plugins that can be used with it to automatically create your routes from folders, auto validate....
 
 
   5.. In browser crypto, lets users enter their key and secret and it will work out the hash for them.
@@ -214,7 +214,7 @@ Here is a description of the parameters you can set:
 
 Please report any issue here:
 
-https://github.com/simonmcmanus/live-docs/issues
+https://github.com/simonmcmanus/livedocs/issues
 
 This guide is a work in progress, if you spot any mistakes, please create a github issue.
 
@@ -237,14 +237,14 @@ This command will watch all the relevant files and regenerate the html file when
 In the near future I plan to open source the following components which work with IORest:
 
 
-##Live-docs Router
+##Livedocs Router
 
 https://github.com/simonmcmanus/livedocs-routeLoader
 
 Store your routes in a logical folder struture and automatically create the spec file and your application from the folder structure
 
 
-##Live-docs Middleware:
+##Livedocs Middleware:
 
 https://github.com/simonmcmanus/livedocs-middleware
 
