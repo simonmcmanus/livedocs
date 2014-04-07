@@ -10,17 +10,16 @@ Given a json spec, generates a html file which can be used to test calls to an A
 
 ##Usage
 
-To generate Live docs from a spec file just run the live-docs command, the
- first argument should point to an live docs spec file, the second argument should
- point to the html file you wish to output:
+To generate Live docs from a spec file just run the livedocs command, the
+ first argument should point to an live docs spec file, the second argument should point to a folder to place the html.
 
 ```
-  live-docs ./specs/sample.json ./out
+  livedocs ./specs/sample.json ./out
 ```
 
 Note that at the moment the ./out folder needs to have a folder containing the major version number of your api.
 
-eg, if your on version 2.3.99 and that's what it says in your spec, you should ensure there is a folder called v2 in your out directory.
+eg, if you are on version 2.3.99 and that's what it says in your spec, you should ensure there is a folder called v2 in your out directory.
 
 ##Authentication
 
