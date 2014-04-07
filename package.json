@@ -4,7 +4,7 @@
   "description": "REST API documentation generator",
   "main": "generate.js",
   "scripts": {
-    "test": "npm test",
+    "test": "npm test ",
     "js": "nodemon -e js --exec 'browserify' ./public/interactions.js -o ./public/bundle.js",
     "html": "nodemon -e json,jade,js"
   },

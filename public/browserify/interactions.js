@@ -1,24 +1,28 @@
+'use strict';
+
 var $ = require('jquery');
 var pretty = require('../lib/prettyprint.js');
-var generateHash = require('../../../api/lib/generateHash');
+var generateHash = require('../../../api/lib/generateHash').generate;
 
 var prepUrl = function(url, tokens) {
   var queryParams = ['query', 'page', 'size', 'sort', 'order', '$id$',
-        'detail', 'assetDetail', 'images', 'revisions', 'rights'];
+        'detail', 'assetDetail', 'images', 'revisions', 'rights', 'authorization'];
   for (var a = 0; queryParams.length > a; a++) {
     if (tokens && tokens[queryParams[a]]) {
+      //var encodeURIComponent = function() {return a}
       var seperator  = (url.indexOf('?') === -1) ? '?' : '&';
       url = url + seperator + encodeURIComponent(queryParams[a]) +
         '=:' + encodeURIComponent(queryParams[a]);
     }
   }
+  console.log('out', url, tokens.authorization);
   return url;
 };
 
  var tokenise = function(url, tokens) {
   for (var token in tokens) {
     var regex = new RegExp(':' + encodeURIComponent(token), 'g');
-    url = url.replace(regex, encodeURI(tokens[token]));
+    url = url.replace(regex, encodeURIComponent(tokens[token]));
     // todo - remove the item from the form so it ooesnt get sent twie
   }
   return url;
@@ -43,7 +47,7 @@ $(function() {
       type: 'GET',
       url: this.action,
       headers: {
-         authorization: getHash($(this))
+         authorization: 'A5-API ' + getHash($(this))
       },
       complete: function (response, status) {
         if(response.statusText === 'OK') {
@@ -70,12 +74,18 @@ $(function() {
       $form.removeClass('withResults');
     }
   })
-  function updateResults($form, url, headers, status, body) {
+  function updateResults($form, url, headers, status, body, html) {
     $form.find('.uri').html(url);
     $form.find('.headers').html(pretty.prettyPrint(headers || {}));
     $form.find('.status').html(status);
-    $form.find('pre.pretty').html(pretty.prettyPrint(body || {}));
-    $form.find('pre.raw').html(JSON.stringify(body));
+    if(body) {
+      $form.find('pre.pretty').html(pretty.prettyPrint(body || {}));
+      $form.find('pre.raw').html(JSON.stringify(body));
+    }else if(html) {
+      $form.find('pre.pretty').html(html);
+      $form.find('pre.raw').html(html);
+
+    }
   };
 
   $('form').submit(function(e) {
@@ -93,22 +103,38 @@ $(function() {
     $form.addClass('withResults');
     var method = $form.attr('method');
 
-    if(method === 'GET') {
+
+
+
+    var headers = {};
+
+    if($form.attr('data-auth-method') === 'query') {
+      values.authorization = getHash($('form#key'));
+    } else {
+      headers.authorization = 'A5-API ' + getHash($('form#key'));
+    }
+
+    if(method === 'GET') { // why only get? comments pls.
       action = prepUrl(action, values);
     }
 
+    console.log('actino', action, values);
+
     var url = tokenise(action, values);
 
-    var headers = {
-       authorization: getHash($('form#key'))
-    };
 
     var options = {
       type: method,
       url: url,
+      processData : false,
       headers: headers,
       complete: function (response, status) {
-        updateResults($form, this.url, headers, response.status || response.statusText, response.responseJSON);
+        if($form.attr('data-output') === 'image') {
+          console.log('in here ')
+          updateResults($form, this.url, headers, response.status || response.statusText, null, '<img src="' + url + '" />');
+        }else {
+          updateResults($form, this.url, headers, response.status || response.statusText, response.responseJSON);
+        }
         $submit.removeClass('loading');
         $form.find('.results').addClass('show');
         $form.find('.clear').removeAttr('disabled');
@@ -137,10 +163,9 @@ $(function() {
   // remember the key and secret values.
   $('input#key').val(localStorage.getItem('adBank-key'));
   $('input#secret').val(localStorage.getItem('adBank-secret'));
-  $('input#key, input#secret').keydown(function() {
+  $('input#key, input#secret').keyup(function() {
     localStorage.setItem('adBank-' + this.id, $(this).val());
   });
-
 
   $('.clear').click(function() {
     this.disabled = true;

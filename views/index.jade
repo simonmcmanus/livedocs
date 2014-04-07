@@ -14,7 +14,8 @@ html
     h1='API'
     span=' v' + version
   form(action=prefix + '/auth')#key
-    div.detail='In order to make requests to the API you will need to enter you api key and secret which will have been provided by your account manager.'
+    div.detail='In order to make requests to the API you will need to enter you api key and secret which will have been provided by your account manager. For help with the API please read our '
+      a(href='/api/v1/faq')='FAQ'
     label='Key:'
     input#key
     label='Secret:'

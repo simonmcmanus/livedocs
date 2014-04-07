@@ -13,7 +13,7 @@ To generate Live docs from a spec file just run the live-docs command, the
  first argument should point to an live docs spec file, the second argument should
  point to the html file you wish to output:
 
-```json
+```
   live-docs ./specs/sample.json ./out.html
 ```
 
