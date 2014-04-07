@@ -9,7 +9,7 @@
     "html": "nodemon -e json,jade,js"
   },
   "bin": {
-    "live-docs": "./generate.js"
+    "livedocs": "./generate-markup.js"
   },
   "dependencies": {
     "browserify": "~3.18.0",

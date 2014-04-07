@@ -14,8 +14,12 @@ To generate Live docs from a spec file just run the live-docs command, the
  point to the html file you wish to output:
 
 ```
-  live-docs ./specs/sample.json ./out.html
+  live-docs ./specs/sample.json ./out
 ```
+
+Note that at the moment the ./out folder needs to have a folder containing the major version number of your api.
+
+eg, if your on version 2.3.99 and that's what it says in your spec, you should ensure there is a folder called v2 in your out directory.
 
 ##Authentication
 
