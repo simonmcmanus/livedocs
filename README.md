@@ -1,5 +1,5 @@
 #LiveDocs
-Given a json spec, generates a html file which can be used to test calls to an API.
+Given a json spec generates a html file which can be used to test calls to an API.
 
 
 ##Install
@@ -193,7 +193,7 @@ Here is a description of the parameters you can set:
 
   1.. Decent support for PUTTING/POSTING JSON bodies. The was actually one of the main reason for writing my own, at the time I started writing there was no support for PUT/POST JSON bodies. I found a pull request from two years previous that had not been responded. I poked mashery about this, but by the time they got back to me (only a day later) I had written most of Livedocs.
 
-  2.. No server, livedocs generates a HTML file from your routes, so as long as you have CORS enabled you can post directly to your API from your browser. this can make debugging easier and removes an level of abstraction that was unecessary. For me at least.
+  2.. No server, livedocs generates a HTML file from your routes, so as long as you have CORS enabled you can post directly to your API from your browser. this can make debugging easier and removes an level of abstraction that was unnecessary. For me at least.
 
   3.. Standalone file, Livedocs works as a standalone file, which means you can just send your consumers a HTML file along with any required auth and they can start using testing your API immediately.
 
