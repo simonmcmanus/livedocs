@@ -20,7 +20,7 @@ To generate Live docs from a spec file just run the live-docs command, the
 ##Authentication
 
 Live-docs does not support OAuth, it is designed to work with APIs that can serve
-content to a standalone webpage.
+content to a standalone web page.
 
 We use a key and secret to generate a hash and then send the hashed value
 along to the server. I'm keen that live-docs support other methods of auth but at
@@ -28,7 +28,7 @@ the moment you will need to create your own generateHash function in
 interactions.js.
 
 If you would like to add an authentication method let me know and I will help
-out whereever possible.
+out where ever possible.
 
 
 ##Spec Format
@@ -134,7 +134,7 @@ options include:
   * textarea
   * checkbox
 
-If no input is specifed live-docs will default to an input.
+If no input is specified live-docs will default to an input.
 
 If no input type is specified it will become an input. If location is set to
 body it will be the only field sent in the body.
@@ -161,7 +161,7 @@ If you specify select as the input type you should also add an options array to
 
 ```
 
-Severside middlware can also be used to ensure values are only accepted which
+Severside middleware can also be used to ensure values are only accepted which
 exist in the options array.
 
 
@@ -195,7 +195,7 @@ Here is a description of the parameters you can set:
   3.. Standalone file, Live-docs works as a standalone file, which means you can just send your consumers a HTML file along with any required auth and they can start using testing your API immediately.
 
 
-  3.. Parameter Validation, Live-docs uses the same data validation types as HTML5 so you get HTML5 validation for free on the front end (assuming your using a reasonably modern browser).  I have also written Restify middlware which can automatically validate against the main data types serverside.
+  3.. Parameter Validation, Live-docs uses the same data validation types as HTML5 so you get HTML5 validation for free on the front end (assuming your using a reasonably modern browser).  I have also written Restify middleware which can automatically validate against the main data types serverside.
 
   eg, if you specified a field as required, that request will be rejected in middleware just because its in your route spec.
 
@@ -247,7 +247,5 @@ Store your routes in a logical folder struture and automatically create the spec
 https://github.com/simonmcmanus/livedocs-middleware
 
 validator - check for required values, type checks and ensure enumerated list values are valid.
-
-If you can't find them I probably havnt released them yet. Please feel free to hastle me about releasing them.
 
 

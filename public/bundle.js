@@ -14,9 +14,15 @@ exports.generate = function(key, secret) {
   var epoch = Math.round(new Date().getTime() / 1000);
   var hash = makeHash(key + epoch, secret);
   return  key + ':' + hash + ':' + epoch;
+};
 
-  //new Buffer(key + ':' + hash + ':' + epoch).digest('base64');
-//  return 'A5-API ' + key + ':' + hash + ':' + epoch;
+
+exports.getQueryHash = function(key, secret) {
+  return exports.generate(key, secret);
+};
+
+exports.getHeaderHash = function(key, secret) {
+  return 'A5-API ' + exports.generate(key, secret);
 };
 
 },{"crypto":6}],2:[function(require,module,exports){
@@ -9137,20 +9143,30 @@ return jQuery;
 
 var $ = require('jquery');
 var pretty = require('../lib/prettyprint.js');
-var generateHash = require('../../../api/lib/generateHash').generate;
+var generateHash = require('../../../api/lib/generateHash');
+
+
+
+function getQueryHash($form) {
+  return generateHash.getQueryHash($form.find('#key').val(), $form.find('#secret').val());
+}
+
+function getHeaderHash($form) {
+  return generateHash.getHeaderHash($form.find('#key').val(), $form.find('#secret').val());
+}
+
 
 var prepUrl = function(url, tokens) {
+  // these params will alwas be allowed in the url even if the url template does not list these params.
   var queryParams = ['query', 'page', 'size', 'sort', 'order', '$id$',
         'detail', 'assetDetail', 'images', 'revisions', 'rights', 'authorization'];
   for (var a = 0; queryParams.length > a; a++) {
     if (tokens && tokens[queryParams[a]]) {
-      //var encodeURIComponent = function() {return a}
       var seperator  = (url.indexOf('?') === -1) ? '?' : '&';
       url = url + seperator + encodeURIComponent(queryParams[a]) +
         '=:' + encodeURIComponent(queryParams[a]);
     }
   }
-  console.log('out', url, tokens.authorization);
   return url;
 };
 
@@ -9166,7 +9182,6 @@ var prepUrl = function(url, tokens) {
 $(function() {
   $('ul.json li a').click(function(e) {
     e.preventDefault();
-
     var $parent = $(this).parents('div.output');
     $parent.toggleClass('raw', !$parent.hasClass('raw'));
     $parent.toggleClass('pretty', !$parent.hasClass('pretty'));
@@ -9182,7 +9197,7 @@ $(function() {
       type: 'GET',
       url: this.action,
       headers: {
-         authorization: 'A5-API ' + getHash($(this))
+         authorization: getHeaderHash($(this))
       },
       complete: function (response, status) {
         if(response.statusText === 'OK') {
@@ -9239,21 +9254,17 @@ $(function() {
     var method = $form.attr('method');
 
 
-
-
     var headers = {};
 
     if($form.attr('data-auth-method') === 'query') {
-      values.authorization = getHash($('form#key'));
+      values.authorization = getQueryHash($('form#key'));
     } else {
-      headers.authorization = 'A5-API ' + getHash($('form#key'));
+      headers.authorization = getHeaderHash($('form#key'));
     }
 
     if(method === 'GET') { // why only get? comments pls.
       action = prepUrl(action, values);
     }
-
-    console.log('actino', action, values);
 
     var url = tokenise(action, values);
 
@@ -9265,7 +9276,6 @@ $(function() {
       headers: headers,
       complete: function (response, status) {
         if($form.attr('data-output') === 'image') {
-          console.log('in here ')
           updateResults($form, this.url, headers, response.status || response.statusText, null, '<img src="' + url + '" />');
         }else {
           updateResults($form, this.url, headers, response.status || response.statusText, response.responseJSON);
@@ -9280,8 +9290,6 @@ $(function() {
 
       options.data = values.body;
       options.contentType = 'application/json';
-
-      //debugger;
     } else {
       if(method !== 'GET') {
         options.data = $form.serialize();
@@ -9291,15 +9299,13 @@ $(function() {
     $.ajax(options);
   });
 
-  function getHash($form) {
-    return generateHash($form.find('#key').val(), $form.find('#secret').val());
-  }
+
 
   // remember the key and secret values.
-  $('input#key').val(localStorage.getItem('adBank-key'));
-  $('input#secret').val(localStorage.getItem('adBank-secret'));
+  $('input#key').val(localStorage.getItem('livedocs-key'));
+  $('input#secret').val(localStorage.getItem('livedocs-secret'));
   $('input#key, input#secret').keyup(function() {
-    localStorage.setItem('adBank-' + this.id, $(this).val());
+    localStorage.setItem('livedocs-' + this.id, $(this).val());
   });
 
   $('.clear').click(function() {
