@@ -51,7 +51,6 @@ And this is the HTML file generated from the html form:
     {
       "name": "Assets",
       "description": "All the asset methods",
-      "url": "/assets",
       "methods": [
         {
           "name": "Create an Asset",
@@ -206,7 +205,7 @@ Here is a description of the parameters you can set:
 
   5.. In browser crypto, lets users enter their key and secret and it will work out the hash for them.
 
-  I did look at making the modifications to IODocs but it felt like IODOcs was trying to do more than I needed.
+  I did look at making the modifications to IODocs but it felt like IODocs was trying to do more than I needed.
 
 
 
