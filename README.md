@@ -58,12 +58,14 @@ And this is the HTML file generated from the html form:
           "method": "GET",
           "url": "/assets",
           "parameters": [
-            "name": "assetId",
-            "required": true,
-            "type": "string",
-            "location": "query",
-            "default": "1",
-            "description": "The id of the asset you wish to create."
+            {
+              "name": "assetId",
+              "required": true,
+              "type": "string",
+              "location": "query",
+              "default": "1",
+              "description": "The id of the asset you wish to create."
+            }
           ]
         }
       ]
