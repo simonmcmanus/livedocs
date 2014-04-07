@@ -233,7 +233,7 @@ This command will watch all the relevant files and regenerate the html file when
 
 #Additional Components:
 
-In the near future I plan to open source the following components which work with IORest:
+In the near future I plan to open source the following components which work with Livedocs:
 
 
 ##Livedocs Router
