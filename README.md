@@ -5,7 +5,7 @@ Given a json spec, generates a html file which can be used to test calls to an A
 ##Install
 
 ```
-  npm install -g live-docs
+  npm install -g livedocs
 ```
 
 ##Usage
@@ -23,12 +23,10 @@ eg, if you are on version 2.3.99 and that's what it says in your spec, you shoul
 
 ##Authentication
 
-Live-docs does not support OAuth, it is designed to work with APIs that can serve
-content to a standalone web page.
+Live-docs does not support OAuth, it is designed to work with APIs that can serve content to a standalone web page.
 
 We use a key and secret to generate a hash and then send the hashed value
-along to the server. I'm keen that live-docs support other methods of auth but at
-the moment you will need to create your own generateHash function in
+along to the server. I'm keen that livedocs support other methods of auth but at the moment you will need to create your own generateHash function in
 interactions.js.
 
 If you would like to add an authentication method let me know and I will help
