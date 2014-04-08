@@ -47,6 +47,10 @@ And this is the HTML file generated from the html form:
 
 ```json
 {
+  "server": "api.mydomain.com",
+  title: "My API Page Title",
+  prefix: "/api/v1",
+  version: '3.2.1',
   "endpoints" : [
     {
       "name": "Assets",
@@ -64,7 +68,7 @@ And this is the HTML file generated from the html form:
               "type": "string",
               "location": "query",
               "default": "1",
-              "description": "The id of the asset you wish to create."
+              "description": "The ID of the asset you wish to create."
             }
           ]
         }
