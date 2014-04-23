@@ -15,7 +15,7 @@ spec.js = fs.readFileSync( __dirname  + '/public/bundle.js', {
 
 var templates = {
   index: fs.readFileSync( __dirname + '/views/index.jade' )
-}
+};
 
 var jade = require('jade');
 
@@ -36,7 +36,7 @@ var out = path.join(process.cwd(), process.argv[3], '/v' + v + '/index.html');
 
 fs.writeFile(out, html, function(err) {
   if (!err) {
-    console.log('IORest HTML file saved. (' + out + ')');
+    console.log('LiveDocs HTML file saved. (' + out + ')');
   }else {
     console.log(err);
   }

@@ -1,7 +1,7 @@
 
 form(data-action-template= prefix + method.url, method=method.method, target='base', data-auth-method=method.auth, data-output=method.output).hidden
   if method.synopsis
-    div.synopsis=method.synopsis
+    div.synopsis!=method.synopsis
   table
     if method.parameters.length > 0
       tr.noHover
@@ -12,7 +12,7 @@ form(data-action-template= prefix + method.url, method=method.method, target='ba
         th="type"
     each param in method.parameters
       //-console.log(param)
-      if param.input != "textarea" && param.input!="checkbox" && !param.hidden
+      if param.input != "textarea" &&  param.input != "radio" && param.input!="checkbox" && !param.hidden
         if param.input=="select"
           include ./select
         else
@@ -25,6 +25,11 @@ form(data-action-template= prefix + method.url, method=method.method, target='ba
     each param in method.parameters
       if param.input==="checkbox" && !param.hidden
         include ./checkbox
+
+    each param in method.parameters
+      if param.input==="radio" && !param.hidden
+        include ./radio
+
     tr.noHover
       td
       td(colspan=3)

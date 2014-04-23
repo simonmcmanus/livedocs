@@ -6,9 +6,5 @@ tr.noHover
         div=param.description
         div.options
           each label, name in param.options
-            input(type="checkbox", name=param.name, id=name, value=name)
+            input(type="radio", name=param.name, id=name, value=name)
             label(for=name)=label
-      else
-        input(type="checkbox", name=param.name, id=param.name, value=value)
-        label(for=param.name)=param.description
-        br

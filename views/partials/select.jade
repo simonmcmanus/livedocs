@@ -6,8 +6,8 @@ td
   -   required = true;
   - }
   select(name=param.name, id=param.name, required=required)
-    each option in param.options
-      option(label=option)=option
+    each option, label in param.options
+      option(value=label)=option
 td
     label=param.description
 td=param.location

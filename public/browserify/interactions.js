@@ -2,9 +2,10 @@
 
 var $ = require('jquery');
 var pretty = require('../lib/prettyprint.js');
-var generateHash = require('../../../api/lib/generateHash');
+var generateHash = require('adstream-adbank-api-generate-hash');
 
-
+var urls = require('url-builder');
+var tokenise = urls.tokenise;
 
 function getQueryHash($form) {
   return generateHash.getQueryHash($form.find('#key').val(), $form.find('#secret').val());
@@ -14,37 +15,13 @@ function getHeaderHash($form) {
   return generateHash.getHeaderHash($form.find('#key').val(), $form.find('#secret').val());
 }
 
-
-var prepUrl = function(url, tokens) {
-  // these params will alwas be allowed in the url even if the url template does not list these params.
-  var queryParams = ['query', 'page', 'size', 'sort', 'order', '$id$',
-        'detail', 'assetDetail', 'images', 'revisions', 'rights', 'authorization'];
-  for (var a = 0; queryParams.length > a; a++) {
-    if (tokens && tokens[queryParams[a]]) {
-      var seperator  = (url.indexOf('?') === -1) ? '?' : '&';
-      url = url + seperator + encodeURIComponent(queryParams[a]) +
-        '=:' + encodeURIComponent(queryParams[a]);
-    }
-  }
-  return url;
-};
-
- var tokenise = function(url, tokens) {
-  for (var token in tokens) {
-    var regex = new RegExp(':' + encodeURIComponent(token), 'g');
-    url = url.replace(regex, encodeURIComponent(tokens[token]));
-    // todo - remove the item from the form so it ooesnt get sent twie
-  }
-  return url;
-};
-
 $(function() {
   $('ul.json li a').click(function(e) {
     e.preventDefault();
     var $parent = $(this).parents('div.output');
     $parent.toggleClass('raw', !$parent.hasClass('raw'));
     $parent.toggleClass('pretty', !$parent.hasClass('pretty'));
-  })
+  });
 
   // $('#changeAuth').click(function() {
   //   $('body').removeClass('step2').addClass('step1');
@@ -67,7 +44,7 @@ $(function() {
           alert('Please enter a valid key and secret to proceed.');
         }
       }
-    })
+    });
   });
 
 
@@ -82,7 +59,7 @@ $(function() {
       $form.addClass('hidden');
       $form.removeClass('withResults');
     }
-  })
+  });
   function updateResults($form, url, headers, status, body, html) {
     $form.find('.uri').html(url);
     $form.find('.headers').html(pretty.prettyPrint(headers || {}));
@@ -105,10 +82,24 @@ $(function() {
     var action = $form.attr('data-action-template');
     var values = $form.serializeArray().reduce(
       function(obj, item) {
-        obj[item.name] = item.value;
+
+        if(!obj[item.name]) {
+          obj[item.name] = item.value;
+        }else {
+          console.log('=>', typeof obj[item.name]);
+          if(typeof obj[item.name] === 'string') {
+            var temp = obj[item.name];
+            obj[item.name] = [temp, item.value];
+          }else {
+            console.log('-->',  obj[item.name]);
+            obj[item.name].push(item.value);
+          }
+        }
         return obj
       }, {}
     );
+
+    console.log(values);
     $form.addClass('withResults');
     var method = $form.attr('method');
 
@@ -121,13 +112,7 @@ $(function() {
       headers.authorization = getHeaderHash($('form#key'));
     }
 
-    if(method === 'GET') { // why only get? comments pls.
-      action = prepUrl(action, values);
-    }
-
     var url = tokenise(action, values);
-
-
     var options = {
       type: method,
       url: url,
@@ -167,9 +152,12 @@ $(function() {
     localStorage.setItem('livedocs-' + this.id, $(this).val());
   });
 
+
+
+
   $('.clear').click(function() {
     this.disabled = true;
     $(this).parents('form').find('pre.uri, pre.status, pre.headers, pre.pretty, pre.raw').empty();
-  })
+  });
 
 });

@@ -28,7 +28,9 @@ html
     div.endpointDescription!=endpoint.description
 
     each method in endpoint.methods
+      -console.log(method.hidden)
       if(!method.hidden)
+        -console.log(method.name)
         div(class="#{method.method}").container
           div.header
             span.verb=method.method

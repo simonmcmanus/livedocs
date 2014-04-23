@@ -21,8 +21,8 @@ module.exports = function(grunt) {
           ext: 'jade',
           watch: ['./views'],
           args: [
-            '../api/iorest/specs/latest.json',
-            '../api/iorest/api'
+            '../api/livedocs/specs/latest.json',
+            '../api/livedocs/api'
           ]
         }
       },

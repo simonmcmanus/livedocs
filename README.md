@@ -48,9 +48,9 @@ And this is the HTML file generated from the html form:
 ```json
 {
   "server": "api.mydomain.com",
-  title: "My API Page Title",
-  prefix: "/api/v1",
-  version: '3.2.1',
+  "title": "My API Page Title",
+  "prefix": "/api/v1",
+  version: "3.2.1",
   "endpoints" : [
     {
       "name": "Assets",
@@ -187,6 +187,12 @@ Here is a description of the parameters you can set:
 
   }
 ```
+
+
+##Parameter Examples:
+
+
+
 
 ##About Live Docs
 

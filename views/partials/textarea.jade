@@ -5,4 +5,4 @@ tr
     - if(param.required) {
     -   required = true;
     - }
-    textarea(name=param.name, required=required)
+    textarea(name=param.name, required=required, )=JSON.stringify(param.example)
