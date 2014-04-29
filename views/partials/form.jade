@@ -1,7 +1,7 @@
 
 form(data-action-template= prefix + method.url, method=method.method, target='base', data-auth-method=method.auth, data-output=method.output).hidden
   if method.synopsis
-    div.synopsis!=method.synopsis
+    div.synopsis!=markdown(method.synopsis)
   table
     if method.parameters.length > 0
       tr.noHover

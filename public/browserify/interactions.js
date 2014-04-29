@@ -143,17 +143,12 @@ $(function() {
     $.ajax(options);
   });
 
-
-
   // remember the key and secret values.
   $('input#key').val(localStorage.getItem('livedocs-key'));
   $('input#secret').val(localStorage.getItem('livedocs-secret'));
   $('input#key, input#secret').keyup(function() {
     localStorage.setItem('livedocs-' + this.id, $(this).val());
   });
-
-
-
 
   $('.clear').click(function() {
     this.disabled = true;

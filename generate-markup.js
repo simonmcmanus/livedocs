@@ -23,7 +23,7 @@ var jade = require('jade');
 spec.filename = __dirname + '/views/partials/test.jade';
 // Compile a function
 
-
+spec.markdown = require('markdown').markdown.toHTML;
 var indexFn = jade.compile(templates.index, spec);
 
 // Render the function

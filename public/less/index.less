@@ -115,7 +115,7 @@ body {
      -o-transition: opacity ease-in-out 500ms;
      -moz-transition: opacity ease-in-out 500ms;
      -webkit-transition: opacity ease-in-out 500ms;
-    form {
+    form, form:target {
       background-color: #FCFEFF;
       padding: 1em;
       margin: 0 0.4em 0 0;
@@ -382,5 +382,15 @@ div.container.POST .header {
 
 div.container.POST .header .verb {
   background-color: #afe1c0;
+}
+
+
+
+
+
+div.container:target form {
+  max-height: inherit;
+  height: inherit;
+  opacity: 1;
 }
 
