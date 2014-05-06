@@ -9191,9 +9191,10 @@ exports.prepUrl = function(url, tokens) {
  *                                         '/asset/:id?query=:query'
  * @param  {Object} tokens The token to be placed into the url, tokens.token
  *                                         does not need to be passed in.
+ * @param  {String} prepUrl    Should the url be prepped- boolean
  * @return {String}        The tokenised url.
  */
-exports.tokenise = function(url, tokens) {
+exports.tokenise = function(url, tokens, prepUrl) {
   function doReplace(url, token, value) {
     //var regex = new RegExp(':' + encodeURIComponent(token), 'g');
     // dont think we need the global flag any more.
@@ -9201,7 +9202,9 @@ exports.tokenise = function(url, tokens) {
     return url.replace(regex, encodeURI(value));
   }
 
-  url = exports.prepUrl(url, tokens);
+  if(prepUrl) {
+    url = exports.prepUrl(url, tokens);
+  }
 
   for (var token in tokens) {
     if (tokens[token] instanceof Array) {
@@ -9224,6 +9227,8 @@ exports.tokenise = function(url, tokens) {
 var $ = require('jquery');
 var pretty = require('../lib/prettyprint.js');
 var generateHash = require('adstream-adbank-api-generate-hash');
+
+
 
 var urls = require('url-builder');
 var tokenise = urls.tokenise;
@@ -9270,6 +9275,10 @@ $(function() {
 
 
   $('div.header').click(function() {
+    if($(this).parent().is(':target')) {
+      // if is in url frag ingore hide behaviour.
+      return;
+    }
     var $form = $(this).next();
     if($form.hasClass('hidden')) {
       $form.removeClass('hidden');
@@ -9294,6 +9303,7 @@ $(function() {
 
     }
   };
+
 
   $('form').submit(function(e) {
     e.preventDefault();
@@ -9332,8 +9342,10 @@ $(function() {
     } else {
       headers.authorization = getHeaderHash($('form#key'));
     }
-
-    var url = tokenise(action, values);
+    // Only get values should add fields to the url so we only need to prep url
+    //  on gets.
+    var prepUrl = (method === 'GET');
+    var url = tokenise(action, values, prepUrl);
     var options = {
       type: method,
       url: url,

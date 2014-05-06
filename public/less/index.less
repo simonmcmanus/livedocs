@@ -52,10 +52,10 @@ body {
     font-size: 0.8em;
     border-radius: 0 0 5px 5px;
     margin-right: 7px;
-    transition: all ease-in-out 500ms;
-    -o-transition: all ease-in-out 500ms;
-    -moz-transition: all ease-in-out 500ms;
-    -webkitenjoy-transition: all ease-in-out 500ms;
+    // transition: all ease-in-out 500ms;
+    // -o-transition: all ease-in-out 500ms;
+    // -moz-transition: all ease-in-out 500ms;
+    // -webkitenjoy-transition: all ease-in-out 500ms;
 
     label {
      margin-right: 0.5em;
@@ -108,45 +108,69 @@ body {
   }
 
   .container {
+
+     -webkit-transition-delay: 2s;
+  -moz-transition-delay: 2s;
+  -o-transition-delay: 2s;
+  transition-delay: 2s;
+    &:target { /** override hidden class when selected in the URL hash **/
+      .header {
+        cursor: inherit;
+      }
+      form {
+        padding-top: inherit !important;
+        max-height: inherit !important;
+        height: inherit !important;
+        opacity: 1 !important;
+        &.hidden table {
+          opacity: 1;
+        }
+
+      }
+    }
     padding: 2px;
     opacity: 1;
     margin: 0 5px 5px 20px;
-    transition: opacity ease-in-out 500ms;
-     -o-transition: opacity ease-in-out 500ms;
-     -moz-transition: opacity ease-in-out 500ms;
-     -webkit-transition: opacity ease-in-out 500ms;
-    form, form:target {
+
+    form {
       background-color: #FCFEFF;
       padding: 1em;
       margin: 0 0.4em 0 0;
       height: auto;
       max-height: 100%;
-      /*    transition: max-height ease-in-out 500ms;
-      -o-transition: max-height ease-in-out 500ms;
-      -moz-transition: max-height ease-in-out 500ms;
-      -webkit-transition: max-height ease-in-out 500ms;
-      */    border: 1px solid #ddd;
+
+      transition: max-height ease-in-out 300ms;
+      -o-transition: max-height ease-in-out 300ms;
+      -moz-transition: max-height ease-in-out 300ms;
+      -webkit-transition: max-height ease-in-out 300ms;
+          border: 1px solid #ddd;
       border-top: 0;
       top: 0;
       position: relative;
-      opacity: 1;
       table {
         width: 100%;
+        opacity: 1;
+
+          transition: opacity ease-in-out 300ms 100ms;
+           -o-transition: opacity ease-in-out 300ms 100ms;
+           -moz-transition: opacity ease-in-out 300ms 100ms;
+           -webkit-transition: opacity ease-in-out 300ms 100ms;
         th {
           font-size: 0.7em;
           text-align: left;
           padding: 0.5em;
           font-weight: bold;
-
+          line-height: 2.3em;
           &.description {
             width: 100%;
           }
         }
 
         td {
+
           font-size: 0.8em;
           padding: 0.5em;
-          line-height: 1.8em;
+          line-height: 2.3em;
           vertical-align: top;
 
           &.name {
@@ -162,6 +186,18 @@ body {
         tr.noHover:hover {
           background: none;
         }
+        input {
+          padding: 0.4em !important;
+
+        }
+        input.button {
+          border-style:solid;
+          border-radius: 2px;
+          padding: 0.2em 0.5em !important;
+          font-size: 1.1em;
+          background: rgb(66, 184, 221);
+          border-width: 3px;
+        }
         textarea {
           width: 100%;
           height: 10em;
@@ -173,7 +209,17 @@ body {
         overflow: hidden;
         height: 0;
         max-height:0%;
+
+        transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -webkit-transition: all ease-in-out 300ms;
+        table {
+          opacity: 0;
+        }
+
       }
+
       &.withResults {
         max-height:initial;
       }
@@ -205,7 +251,7 @@ body {
       }
 
       .name {
-        font-size: 0.9em;
+        font-size: 0.8em;
         margin: 4px 9px;
       }
       span.verb {
@@ -337,13 +383,14 @@ div.container div.raw a.raw {
 }
 
 div.container.GET .header,
-div.container.GET form {
+div.container.GET form, div.container.GET .button {
  border-color: #aecce4;
 }
 
-div.container.GET .header .verb {
+div.container.GET .header .verb, div.container.GET .button {
  background-color: #aecce4;
 }
+
 
 div.container.DELETE .header {
   border-color: #deb3b3;
@@ -353,11 +400,11 @@ div.container.DELETE .header {
   background: #f5e8e8;
 }
 
-div.container.DELETE .header .verb {
+div.container.DELETE .header .verb, div.container.DELETE .button {
   background-color: #deb3b3;
 }
 
-div.container.PUT form {
+div.container.PUT form , div.container.PUT .button {
   border-color: #e9cead;
 }
 
@@ -368,7 +415,7 @@ div.container.PUT .header {
   border-color: #e9cead;
 }
 
-div.container.PUT .header .verb {
+div.container.PUT .header .verb, div.container.PUT .button {
   background-color: #e9cead;
 }
 
@@ -380,17 +427,17 @@ div.container.POST .header {
   background: #e7f6ec;
 }
 
-div.container.POST .header .verb {
+div.container.POST .header .verb, div.container.POST .button {
   background-color: #afe1c0;
 }
 
 
 
-
-
-div.container:target form {
-  max-height: inherit;
-  height: inherit;
-  opacity: 1;
+div.container.POST form, div.container.POST .button {
+  border-color: #afe1c0;
 }
+
+
+
+
 

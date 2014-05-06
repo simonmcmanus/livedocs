@@ -22,7 +22,7 @@
     "jquery": "~2.1.0",
     "less": "~1.7.0",
     "markdown": "^0.5.0",
-    "url-builder": "0.1.0"
+    "url-builder": "0.2.0"
   },
   "author": "Simon McManus",
   "license": "BSD-2-Clause",

@@ -92,7 +92,7 @@ Each method can have the following properties:
 ```json
 {
   "name": "Create an Asset",
-  "synopsis": "What the method does",
+  "synopsis": "What the method does, supports  markdown.",
   "uri": "/assets",
   "method": "GET",
   "parameters": []
@@ -120,9 +120,9 @@ Will not allow the test form to be submitted without this value. If the
 middleware is used the request can also be rejected serverside if the value
 is missing.
 
-#### description
+#### Description
 
-The description that will appear in the testing harness.
+The description that will appear in the testing harness. This field supports Markdown.
 
 ####type
 

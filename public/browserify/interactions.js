@@ -4,6 +4,8 @@ var $ = require('jquery');
 var pretty = require('../lib/prettyprint.js');
 var generateHash = require('adstream-adbank-api-generate-hash');
 
+
+
 var urls = require('url-builder');
 var tokenise = urls.tokenise;
 
@@ -49,6 +51,10 @@ $(function() {
 
 
   $('div.header').click(function() {
+    if($(this).parent().is(':target')) {
+      // if is in url frag ingore hide behaviour.
+      return;
+    }
     var $form = $(this).next();
     if($form.hasClass('hidden')) {
       $form.removeClass('hidden');
@@ -73,6 +79,7 @@ $(function() {
 
     }
   };
+
 
   $('form').submit(function(e) {
     e.preventDefault();
@@ -111,8 +118,10 @@ $(function() {
     } else {
       headers.authorization = getHeaderHash($('form#key'));
     }
-
-    var url = tokenise(action, values);
+    // Only get values should add fields to the url so we only need to prep url
+    //  on gets.
+    var prepUrl = (method === 'GET');
+    var url = tokenise(action, values, prepUrl);
     var options = {
       type: method,
       url: url,

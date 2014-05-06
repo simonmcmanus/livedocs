@@ -46,10 +46,6 @@ body form#key {
   font-size: 0.8em;
   border-radius: 0 0 5px 5px;
   margin-right: 7px;
-  transition: all ease-in-out 500ms;
-  -o-transition: all ease-in-out 500ms;
-  -moz-transition: all ease-in-out 500ms;
-  -webkitenjoy-transition: all ease-in-out 500ms;
 }
 body form#key label {
   margin-right: 0.5em;
@@ -88,82 +84,108 @@ body .endpointDescription {
   margin: 1.3em;
 }
 body .container {
+  -webkit-transition-delay: 2s;
+  -moz-transition-delay: 2s;
+  -o-transition-delay: 2s;
+  transition-delay: 2s;
   padding: 2px;
   opacity: 1;
   margin: 0 5px 5px 20px;
-  transition: opacity ease-in-out 500ms;
-  -o-transition: opacity ease-in-out 500ms;
-  -moz-transition: opacity ease-in-out 500ms;
-  -webkit-transition: opacity ease-in-out 500ms;
 }
-body .container form,
-body .container form:target {
+body .container:target {
+  /** override hidden class when selected in the URL hash **/
+}
+body .container:target .header {
+  cursor: inherit;
+}
+body .container:target form {
+  padding-top: inherit !important;
+  max-height: inherit !important;
+  height: inherit !important;
+  opacity: 1 !important;
+}
+body .container:target form.hidden table {
+  opacity: 1;
+}
+body .container form {
   background-color: #FCFEFF;
   padding: 1em;
   margin: 0 0.4em 0 0;
   height: auto;
   max-height: 100%;
-  /*    transition: max-height ease-in-out 500ms;
-      -o-transition: max-height ease-in-out 500ms;
-      -moz-transition: max-height ease-in-out 500ms;
-      -webkit-transition: max-height ease-in-out 500ms;
-      */
+  transition: max-height ease-in-out 300ms;
+  -o-transition: max-height ease-in-out 300ms;
+  -moz-transition: max-height ease-in-out 300ms;
+  -webkit-transition: max-height ease-in-out 300ms;
   border: 1px solid #ddd;
   border-top: 0;
   top: 0;
   position: relative;
-  opacity: 1;
 }
-body .container form table,
-body .container form:target table {
+body .container form table {
   width: 100%;
+  opacity: 1;
+  transition: opacity ease-in-out 300ms 100ms;
+  -o-transition: opacity ease-in-out 300ms 100ms;
+  -moz-transition: opacity ease-in-out 300ms 100ms;
+  -webkit-transition: opacity ease-in-out 300ms 100ms;
 }
-body .container form table th,
-body .container form:target table th {
+body .container form table th {
   font-size: 0.7em;
   text-align: left;
   padding: 0.5em;
   font-weight: bold;
+  line-height: 2.3em;
 }
-body .container form table th.description,
-body .container form:target table th.description {
+body .container form table th.description {
   width: 100%;
 }
-body .container form table td,
-body .container form:target table td {
+body .container form table td {
   font-size: 0.8em;
   padding: 0.5em;
-  line-height: 1.8em;
+  line-height: 2.3em;
   vertical-align: top;
 }
-body .container form table td.name,
-body .container form:target table td.name {
+body .container form table td.name {
   font-weight: bold;
   text-align: right;
 }
-body .container form table tr:hover,
-body .container form:target table tr:hover {
+body .container form table tr:hover {
   background: #fff;
 }
-body .container form table tr.noHover:hover,
-body .container form:target table tr.noHover:hover {
+body .container form table tr.noHover:hover {
   background: none;
 }
-body .container form table textarea,
-body .container form:target table textarea {
+body .container form table input {
+  padding: 0.4em !important;
+}
+body .container form table input.button {
+  border-style: solid;
+  border-radius: 2px;
+  padding: 0.2em 0.5em !important;
+  font-size: 1.1em;
+  background: #42b8dd;
+  border-width: 3px;
+}
+body .container form table textarea {
   width: 100%;
   height: 10em;
 }
-body .container form.hidden,
-body .container form:target.hidden {
+body .container form.hidden {
   padding-top: 0;
   opacity: 0;
   overflow: hidden;
   height: 0;
   max-height: 0%;
+  transition: all ease-in-out 300ms;
+  -o-transition: all ease-in-out 300ms;
+  -moz-transition: all ease-in-out 300ms;
+  -webkit-transition: all ease-in-out 300ms;
 }
-body .container form.withResults,
-body .container form:target.withResults {
+body .container form.hidden table {
+  opacity: 0;
+}
+body .container form.withResults {
   max-height: initial;
 }
 body .container .options label {
@@ -189,7 +211,7 @@ body .container .header h3 {
   line-height: 30px;
 }
 body .container .header .name {
-  font-size: 0.9em;
+  font-size: 0.8em;
   margin: 4px 9px;
 }
 body .container .header span.verb {
@@ -290,10 +312,12 @@ div.container div.raw a.raw {
   border-bottom: 0;
 }
 div.container.GET .header,
-div.container.GET form {
+div.container.GET form,
+div.container.GET .button {
   border-color: #aecce4;
 }
-div.container.GET .header .verb {
+div.container.GET .header .verb,
+div.container.GET .button {
   background-color: #aecce4;
 }
 div.container.DELETE .header {
@@ -302,10 +326,12 @@ div.container.DELETE .header {
 div.container.DELETE .header {
   background: #f5e8e8;
 }
-div.container.DELETE .header .verb {
+div.container.DELETE .header .verb,
+div.container.DELETE .button {
   background-color: #deb3b3;
 }
-div.container.PUT form {
+div.container.PUT form,
+div.container.PUT .button {
   border-color: #e9cead;
 }
 div.container.PUT .header {
@@ -314,7 +340,8 @@ div.container.PUT .header {
 div.container.PUT .header {
   border-color: #e9cead;
 }
-div.container.PUT .header .verb {
+div.container.PUT .header .verb,
+div.container.PUT .button {
   background-color: #e9cead;
 }
 div.container.POST .header {
@@ -323,11 +350,11 @@ div.container.POST .header {
 div.container.POST .header {
   background: #e7f6ec;
 }
-div.container.POST .header .verb {
+div.container.POST .header .verb,
+div.container.POST .button {
   background-color: #afe1c0;
 }
-div.container:target form {
-  max-height: inherit;
-  height: inherit;
-  opacity: 1;
+div.container.POST form,
+div.container.POST .button {
+  border-color: #afe1c0;
 }
