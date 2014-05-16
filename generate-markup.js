@@ -29,10 +29,17 @@ var indexFn = jade.compile(templates.index, spec);
 // Render the function
 var html = indexFn(spec);
 
-var v = spec.version.split('.')[0];
 
+var v = null;
+var out;
 
-var out = path.join(process.cwd(), process.argv[3], '/v' + v + '/index.html');
+if(spec.version) {
+  v = spec.version.split('.')[0];
+  out = path.join(process.cwd(), process.argv[3], '/v' + v + '/index.html');
+} else {
+  out = path.join(process.cwd(), process.argv[3], '/index.html');
+}
+
 
 fs.writeFile(out, html, function(err) {
   if (!err) {
