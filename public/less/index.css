@@ -52,10 +52,10 @@ body form#key label {
   margin-left: 3em;
 }
 body form#key input#key {
-  width: 160;
+  width: 170;
 }
 body form#key input#secret {
-  width: 300;
+  width: 220;
 }
 body form#key div.detail {
   margin-bottom: 20px;
