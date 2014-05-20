@@ -2,7 +2,7 @@
   "name": "livedocs",
   "version": "0.3.0",
   "description": "REST API documentation generator",
-  "main": "generate.js",
+  "main": "generate-markup.js",
   "scripts": {
     "test": "npm test ",
     "js": "nodemon -e js --exec 'browserify' ./public/interactions.js -o ./public/bundle.js",
@@ -14,7 +14,6 @@
   "dependencies": {
     "adstream-adbank-api-generate-hash": "^1.0.0",
     "browserify": "~3.18.0",
-    "grunt-browserify": "~1.3.0",
     "grunt-browserify2": "~0.1.8",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-nodemon": "~0.2.1",
