@@ -1,0 +1,10 @@
+h1=title
+span=' v' + version
+form(action=prefix + '/auth')#key
+div.detail='In order to make requests to the API you will need to enter you api key and secret.'
+label='Key:'
+input#key
+label='Secret:'
+input#secret
+input(type="submit", id="checkAuth" value="Check Auth")
+div#auth

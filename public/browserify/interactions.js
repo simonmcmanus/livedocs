@@ -93,12 +93,10 @@ $(function() {
         if(!obj[item.name]) {
           obj[item.name] = item.value;
         }else {
-          console.log('=>', typeof obj[item.name]);
           if(typeof obj[item.name] === 'string') {
             var temp = obj[item.name];
             obj[item.name] = [temp, item.value];
           }else {
-            console.log('-->',  obj[item.name]);
             obj[item.name].push(item.value);
           }
         }
@@ -106,7 +104,6 @@ $(function() {
       }, {}
     );
 
-    console.log(values);
     $form.addClass('withResults');
     var method = $form.attr('method');
 
