@@ -2,20 +2,9 @@
 
 var $ = require('jquery');
 var pretty = require('../lib/prettyprint.js');
-var generateHash = require('adstream-adbank-api-generate-hash');
-
-
 
 var urls = require('url-builder');
 var tokenise = urls.tokenise;
-
-function getQueryHash($form) {
-  return generateHash.getQueryHash($form.find('#key').val(), $form.find('#secret').val());
-}
-
-function getHeaderHash($form) {
-  return generateHash.getHeaderHash($form.find('#key').val(), $form.find('#secret').val());
-}
 
 $(function() {
   $('ul.json li a').click(function(e) {
@@ -24,31 +13,6 @@ $(function() {
     $parent.toggleClass('raw', !$parent.hasClass('raw'));
     $parent.toggleClass('pretty', !$parent.hasClass('pretty'));
   });
-
-  // $('#changeAuth').click(function() {
-  //   $('body').removeClass('step2').addClass('step1');
-  // });
-  $('form#key').submit(function(e) {
-    e.preventDefault();
-
-    $.ajax({
-      type: 'GET',
-      url: this.action,
-      headers: {
-         authorization: getHeaderHash($(this))
-      },
-      complete: function (response, status) {
-        if(response.statusText === 'OK') {
-            alert('Key and Secret are valid.');
- //         $('body').removeClass('step1').addClass('step2');
-        }else {
-//          $('body').removeClass('step2').addClass('step1');
-          alert('Please enter a valid key and secret to proceed.');
-        }
-      }
-    });
-  });
-
 
   $('div.header').click(function() {
     if($(this).parent().is(':target')) {
@@ -149,12 +113,6 @@ $(function() {
     $.ajax(options);
   });
 
-  // remember the key and secret values.
-  $('input#key').val(localStorage.getItem('livedocs-key'));
-  $('input#secret').val(localStorage.getItem('livedocs-secret'));
-  $('input#key, input#secret').keyup(function() {
-    localStorage.setItem('livedocs-' + this.id, $(this).val());
-  });
 
   $('.clear').click(function() {
     this.disabled = true;

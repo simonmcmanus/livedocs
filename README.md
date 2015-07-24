@@ -21,16 +21,31 @@ Note that at the moment the ./out folder needs to have a folder containing the m
 
 eg, if you are on version 2.3.99 and that's what it says in your spec, you should ensure there is a folder called v2 in your out directory.
 
+
+
+### Custom Appearance
+
+Livedocs 2.0.0 accepts 3 new arguments which allow you to customise the presentation and auth method of the generated docs.
+
+```
+livedocs ./livedocs-spec.json ./docs --css custom-docs/style.css --jade ./custom-docs/top.jade --js ./custom-docs/generate-token.js
+
+```
+
+If you add a js file it should expose two global functions:
+
+```
+window.getQueryHash = function() {};
+window.getHeaderHash = function() {};
+```
+
 ##Authentication
 
 Livedocs does not support OAuth, it is designed to work with APIs that can serve content to a standalone web page.
 
 We use a key and secret to generate a hash and then send the hashed value
-along to the server. I'm keen that livedocs support other methods of auth but at the moment you will need to create your own generateHash function in
-interactions.js.
+along to the server.
 
-If you would like to add an authentication method let me know and I will help
-out where ever possible.
 
 
 ##Spec Format
@@ -260,5 +275,3 @@ Store your routes in a logical folder struture and automatically create the spec
 https://github.com/simonmcmanus/livedocs-middleware
 
 validator - check for required values, type checks and ensure enumerated list values are valid.
-
-

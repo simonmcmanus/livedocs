@@ -5,7 +5,7 @@
   "main": "generate-markup.js",
   "scripts": {
     "test": "npm test ",
-    "js": "nodemon -e js --exec 'browserify' ./public/interactions.js -o ./public/bundle.js",
+    "js": "nodemon -e js --exec 'browserify' ./public/browserify/interactions.js -o ./public/bundle.js",
     "html": "nodemon -e json,jade,js"
   },
   "bin": {

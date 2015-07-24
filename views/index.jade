@@ -1,16 +1,18 @@
 html
   head
+    script!=customjs
     script!=js
+    
     title=title
     style=css
+    style=customcss
   body
 
   noscript Javascript is required.
     br
     br
     small Please turn on Javascript in order to submit theses requests to the api. Javascript is used to add the authorization headers to the requests.
-  div.top
-  include ./top
+  div.top!=topMarkup
   each endpoint in endpoints
     h2=endpoint.name
     div.endpointDescription!=(endpoint.description) ? markdown(endpoint.description) : ''
