@@ -1,6 +1,6 @@
 {
   "name": "livedocs",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "REST API documentation generator",
   "main": "generate-markup.js",
   "scripts": {
