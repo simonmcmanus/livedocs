@@ -1,5 +1,6 @@
+- var fullMethod = (method.method.toUpperCase() === 'DEL') ? 'DELETE' : method.method;
 
-form(data-action-template= prefix + method.url, method=method.method, target='base', data-auth-method=method.auth, data-output=method.output).hidden
+form(data-action-template= prefix + method.url, method=fullMethod, target='base', data-auth-method=method.auth, data-output=method.output).hidden
   if method.synopsis
     div.synopsis!=markdown(method.synopsis)
   table
