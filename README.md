@@ -65,7 +65,7 @@ And this is the HTML file generated from the html form:
   "server": "api.mydomain.com",
   "title": "My API Page Title",
   "prefix": "/api/v1",
-  version: "3.2.1",
+  "version": "3.2.1",
   "endpoints" : [
     {
       "name": "Assets",
