@@ -1,4 +1,6 @@
 #LiveDocs
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/simonmcmanus/livedocs.svg)](https://greenkeeper.io/)
 Given a json spec generates a html file which can be used to test calls to an API.
 
 
